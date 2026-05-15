@@ -1,0 +1,22 @@
+{
+  "scripts": {
+    "test": "npx playwright test",
+    "report": "npx allure serve allure-results"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.60.0",
+    "@types/node": "^25.7.0",
+    "allure-playwright": "^2.10.0",
+    "monocart-reporter": "^2.0.0"
+  },
+  "name": "aris-automation-testing---ady",
+  "version": "1.0.0",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
