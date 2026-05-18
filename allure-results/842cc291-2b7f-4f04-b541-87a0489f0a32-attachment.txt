@@ -1,0 +1,205 @@
+Login failed: ExpectError: expect(locator).toBeVisible() failed
+
+Locator: getByRole('cell', { name: /is your ARIS/i }).first()
+Expected: visible
+Error: element(s) not found
+
+Call log:
+  - Expect "toBeVisible" with timeout 60000ms
+  - waiting for getByRole('cell', { name: /is your ARIS/i }).first()
+
+    at LoginPage.login (/Users/adnan/Documents/Aris Automantion - Ady/pages/login.page.ts:126:18)
+    at /Users/adnan/Documents/Aris Automantion - Ady/tests/citizen_search.spec.ts:46:13 {
+  matcherResult: {
+    message: '\x1B[2mexpect(\x1B[22m\x1B[31mlocator\x1B[39m\x1B[2m).\x1B[22mtoBeVisible\x1B[2m(\x1B[22m\x1B[2m)\x1B[22m failed\n' +
+      '\n' +
+      "Locator: getByRole('cell', { name: /is your ARIS/i }).first()\n" +
+      'Expected: visible\n' +
+      'Error: element(s) not found\n' +
+      '\n' +
+      'Call log:\n' +
+      '\x1B[2m  - Expect "toBeVisible" with timeout 60000ms\x1B[22m\n' +
+      "\x1B[2m  - waiting for getByRole('cell', { name: /is your ARIS/i }).first()\x1B[22m\n",
+    pass: false,
+    actual: undefined,
+    name: 'toBeVisible',
+    expected: 'visible',
+    log: [
+      '  - Expect "toBeVisible" with timeout 60000ms',
+      "  - waiting for getByRole('cell', { name: /is your ARIS/i }).first()"
+    ],
+    timeout: undefined,
+    ariaSnapshot: '- banner:\n' +
+      '  - link "modal logo":\n' +
+      '    - /url: /\n' +
+      '    - img "modal logo"\n' +
+      '  - link "Home":\n' +
+      '    - /url: https://www.mailinator.com/\n' +
+      '  - link "Email":\n' +
+      '    - /url: /v4/public/inboxes.jsp\n' +
+      '  - link "Pricing":\n' +
+      '    - /url: https://www.mailinator.com/site/pricing/\n' +
+      '  - link "Documentation":\n' +
+      '    - /url: https://www.mailinator.com/documentation/docs/category/getting-started/index.html\n' +
+      '  - link "FAQ":\n' +
+      '    - /url: https://www.mailinator.com/site/mailinator-faqs/\n' +
+      '  - link "Login":\n' +
+      '    - /url: /v4/login.jsp\n' +
+      '- complementary:\n' +
+      '  - img\n' +
+      '  - text: Recent Inboxes max\n' +
+      '  - img\n' +
+      '  - text: Request Trial Mailinator + AI\n' +
+      '  - link "Give Your AI Assistant the Power of Mailinator":\n' +
+      '    - /url: /v4/mailinatorai.jsp\n' +
+      '    - text: Give Your AI Assistant the Power of Mailinator\n' +
+      '    - img\n' +
+      '  - link "System Status":\n' +
+      '    - /url: https://monitor.mailinator.com/status/mailinator\n' +
+      '  - link "Terms":\n' +
+      '    - /url: https://www.mailinator.com/site/terms-of-use/\n' +
+      '  - link "Privacy":\n' +
+      '    - /url: https://www.mailinator.com/site/privacy-policy/\n' +
+      '  - link "Accessibility":\n' +
+      '    - /url: https://www.mailinator.com/site/accessibility/\n' +
+      '  - link "Security":\n' +
+      '    - /url: https://www.mailinator.com/site/security-details/\n' +
+      '  - paragraph: Copyright 2025 Manybrain, LLC, All Rights Reserved\n' +
+      '- main:\n' +
+      '  - heading "Public Messages" [level=4]\n' +
+      '  - button "Pause Button":\n' +
+      '    - img\n' +
+      '  - button "Delete Button":\n' +
+      '    - img\n' +
+      '  - textbox "inbox field": max\n' +
+      '  - button "GO"\n' +
+      '  - table:\n' +
+      '    - rowgroup:\n' +
+      '      - row "From Subject Received":\n' +
+      '        - cell "From"\n' +
+      '        - cell "Subject"\n' +
+      '        - cell "Received"\n' +
+      '  - table:\n' +
+      '    - rowgroup:\n' +
+      '      - row "sorin.dinu@digitallconnect.ro AW:Bitte antworten Sie, 11 min":\n' +
+      '        - cell\n' +
+      '        - cell "sorin.dinu@digitallconnect.ro"\n' +
+      '        - cell "AW:Bitte antworten Sie,"\n' +
+      '        - cell "11 min"\n' +
+      '- link:\n' +
+      '  - /url: /comic/comic.jsp\n' +
+      '  - img'
+  },
+  [Symbol(step)]: {
+    category: 'expect',
+    apiName: 'expect.toBeVisible',
+    title: `Expect "toBeVisible" getByRole('cell', { name: /is your ARIS/i }).first()`,
+    shortTitle: 'Expect "toBeVisible"',
+    params: { expected: [Object] },
+    stepId: 'expect@41',
+    group: undefined,
+    boxedStack: undefined,
+    location: {
+      file: '/Users/adnan/Documents/Aris Automantion - Ady/pages/login.page.ts',
+      line: 126,
+      column: 18,
+      function: 'LoginPage.login'
+    },
+    steps: [],
+    attachmentIndices: [],
+    info: TestStepInfoImpl {
+      annotations: [],
+      _testInfo: [TestInfoImpl],
+      _stepId: 'expect@41',
+      _title: `Expect "toBeVisible" getByRole('cell', { name: /is your ARIS/i }).first()`,
+      _parentStep: [TestStepInfoImpl],
+      skip: [Function (anonymous)]
+    },
+    complete: [Function: complete],
+    endWallTime: 1779021918190,
+    error: {
+      message: 'Error: \x1B[2mexpect(\x1B[22m\x1B[31mlocator\x1B[39m\x1B[2m).\x1B[22mtoBeVisible\x1B[2m(\x1B[22m\x1B[2m)\x1B[22m failed\n' +
+        '\n' +
+        "Locator: getByRole('cell', { name: /is your ARIS/i }).first()\n" +
+        'Expected: visible\n' +
+        'Error: element(s) not found\n' +
+        '\n' +
+        'Call log:\n' +
+        '\x1B[2m  - Expect "toBeVisible" with timeout 60000ms\x1B[22m\n' +
+        "\x1B[2m  - waiting for getByRole('cell', { name: /is your ARIS/i }).first()\x1B[22m\n",
+      stack: 'Error: \x1B[2mexpect(\x1B[22m\x1B[31mlocator\x1B[39m\x1B[2m).\x1B[22mtoBeVisible\x1B[2m(\x1B[22m\x1B[2m)\x1B[22m failed\n' +
+        '\n' +
+        "Locator: getByRole('cell', { name: /is your ARIS/i }).first()\n" +
+        'Expected: visible\n' +
+        'Error: element(s) not found\n' +
+        '\n' +
+        'Call log:\n' +
+        '\x1B[2m  - Expect "toBeVisible" with timeout 60000ms\x1B[22m\n' +
+        "\x1B[2m  - waiting for getByRole('cell', { name: /is your ARIS/i }).first()\x1B[22m\n" +
+        '\n' +
+        '    at LoginPage.login (/Users/adnan/Documents/Aris Automantion - Ady/pages/login.page.ts:126:18)\n' +
+        '    at /Users/adnan/Documents/Aris Automantion - Ady/tests/citizen_search.spec.ts:46:13',
+      cause: undefined,
+      errorContext: '- banner:\n' +
+        '  - link "modal logo":\n' +
+        '    - /url: /\n' +
+        '    - img "modal logo"\n' +
+        '  - link "Home":\n' +
+        '    - /url: https://www.mailinator.com/\n' +
+        '  - link "Email":\n' +
+        '    - /url: /v4/public/inboxes.jsp\n' +
+        '  - link "Pricing":\n' +
+        '    - /url: https://www.mailinator.com/site/pricing/\n' +
+        '  - link "Documentation":\n' +
+        '    - /url: https://www.mailinator.com/documentation/docs/category/getting-started/index.html\n' +
+        '  - link "FAQ":\n' +
+        '    - /url: https://www.mailinator.com/site/mailinator-faqs/\n' +
+        '  - link "Login":\n' +
+        '    - /url: /v4/login.jsp\n' +
+        '- complementary:\n' +
+        '  - img\n' +
+        '  - text: Recent Inboxes max\n' +
+        '  - img\n' +
+        '  - text: Request Trial Mailinator + AI\n' +
+        '  - link "Give Your AI Assistant the Power of Mailinator":\n' +
+        '    - /url: /v4/mailinatorai.jsp\n' +
+        '    - text: Give Your AI Assistant the Power of Mailinator\n' +
+        '    - img\n' +
+        '  - link "System Status":\n' +
+        '    - /url: https://monitor.mailinator.com/status/mailinator\n' +
+        '  - link "Terms":\n' +
+        '    - /url: https://www.mailinator.com/site/terms-of-use/\n' +
+        '  - link "Privacy":\n' +
+        '    - /url: https://www.mailinator.com/site/privacy-policy/\n' +
+        '  - link "Accessibility":\n' +
+        '    - /url: https://www.mailinator.com/site/accessibility/\n' +
+        '  - link "Security":\n' +
+        '    - /url: https://www.mailinator.com/site/security-details/\n' +
+        '  - paragraph: Copyright 2025 Manybrain, LLC, All Rights Reserved\n' +
+        '- main:\n' +
+        '  - heading "Public Messages" [level=4]\n' +
+        '  - button "Pause Button":\n' +
+        '    - img\n' +
+        '  - button "Delete Button":\n' +
+        '    - img\n' +
+        '  - textbox "inbox field": max\n' +
+        '  - button "GO"\n' +
+        '  - table:\n' +
+        '    - rowgroup:\n' +
+        '      - row "From Subject Received":\n' +
+        '        - cell "From"\n' +
+        '        - cell "Subject"\n' +
+        '        - cell "Received"\n' +
+        '  - table:\n' +
+        '    - rowgroup:\n' +
+        '      - row "sorin.dinu@digitallconnect.ro AW:Bitte antworten Sie, 11 min":\n' +
+        '        - cell\n' +
+        '        - cell "sorin.dinu@digitallconnect.ro"\n' +
+        '        - cell "AW:Bitte antworten Sie,"\n' +
+        '        - cell "11 min"\n' +
+        '- link:\n' +
+        '  - /url: /comic/comic.jsp\n' +
+        '  - img'
+    }
+  }
+}

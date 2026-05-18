@@ -1,0 +1,266 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: citizen_search.spec.ts >> Citizen Search Functionality >> Citizen Search - Valid ID
+- Location: tests/citizen_search.spec.ts:94:9
+
+# Error details
+
+```
+Error: expect(locator).toBeVisible() failed
+
+Locator: getByRole('cell', { name: /is your ARIS/i }).first()
+Expected: visible
+Error: element(s) not found
+
+Call log:
+  - Expect "toBeVisible" with timeout 60000ms
+  - waiting for getByRole('cell', { name: /is your ARIS/i }).first()
+
+```
+
+```yaml
+- banner:
+  - link "modal logo":
+    - /url: /
+    - img "modal logo"
+  - link "Home":
+    - /url: https://www.mailinator.com/
+  - link "Email":
+    - /url: /v4/public/inboxes.jsp
+  - link "Pricing":
+    - /url: https://www.mailinator.com/site/pricing/
+  - link "Documentation":
+    - /url: https://www.mailinator.com/documentation/docs/category/getting-started/index.html
+  - link "FAQ":
+    - /url: https://www.mailinator.com/site/mailinator-faqs/
+  - link "Login":
+    - /url: /v4/login.jsp
+- complementary:
+  - img
+  - text: Recent Inboxes max
+  - img
+  - text: Request Trial Mailinator + AI
+  - link "Give Your AI Assistant the Power of Mailinator":
+    - /url: /v4/mailinatorai.jsp
+    - text: Give Your AI Assistant the Power of Mailinator
+    - img
+  - link "System Status":
+    - /url: https://monitor.mailinator.com/status/mailinator
+  - link "Terms":
+    - /url: https://www.mailinator.com/site/terms-of-use/
+  - link "Privacy":
+    - /url: https://www.mailinator.com/site/privacy-policy/
+  - link "Accessibility":
+    - /url: https://www.mailinator.com/site/accessibility/
+  - link "Security":
+    - /url: https://www.mailinator.com/site/security-details/
+  - paragraph: Copyright 2025 Manybrain, LLC, All Rights Reserved
+- main:
+  - heading "Public Messages" [level=4]
+  - button "Pause Button":
+    - img
+  - button "Delete Button":
+    - img
+  - textbox "inbox field": max
+  - button "GO"
+  - table:
+    - rowgroup:
+      - row "From Subject Received":
+        - cell "From"
+        - cell "Subject"
+        - cell "Received"
+  - table:
+    - rowgroup:
+      - row "sorin.dinu@digitallconnect.ro AW:Bitte antworten Sie, 11 min":
+        - cell
+        - cell "sorin.dinu@digitallconnect.ro"
+        - cell "AW:Bitte antworten Sie,"
+        - cell "11 min"
+- link:
+  - /url: /comic/comic.jsp
+  - img
+```
+
+# Test source
+
+```ts
+  26  | 
+  27  |         this.context = context;
+  28  | 
+  29  |         this.emailInput =
+  30  |             page.getByRole('textbox', {
+  31  |                 name: 'Enter your email address'
+  32  |             });
+  33  | 
+  34  |         this.passwordInput =
+  35  |             page.getByRole('textbox', {
+  36  |                 name: '••••••••••'
+  37  |             });
+  38  | 
+  39  |         this.loginButton =
+  40  |             page.getByRole('button', {
+  41  |                 name: 'Log in'
+  42  |             });
+  43  | 
+  44  |         this.confirmCodeButton =
+  45  |             page.getByRole('button', {
+  46  |                 name: /confirm code/i
+  47  |             });
+  48  |     }
+  49  | 
+  50  |     async navigate() {
+  51  | 
+  52  |         await this.page.goto(
+  53  |             'https://sit-bayambang.aris.ph/sign-in',
+  54  |             {
+  55  |                 waitUntil: 'networkidle'
+  56  |             }
+  57  |         );
+  58  |     }
+  59  | 
+  60  |     async login(
+  61  |         email: string,
+  62  |         password: string
+  63  |     ) {
+  64  | 
+  65  |         // ======================================================
+  66  |         // ENTER LOGIN CREDENTIALS
+  67  |         // ======================================================
+  68  | 
+  69  |         await this.emailInput.fill(email);
+  70  | 
+  71  |         await this.passwordInput.fill(password);
+  72  | 
+  73  |         await this.loginButton.click();
+  74  | 
+  75  |         // ======================================================
+  76  |         // WAIT FOR OTP MODAL
+  77  |         // ======================================================
+  78  | 
+  79  |         try {
+  80  |             await this.page
+  81  |                 .getByText('One Time Password')
+  82  |                 .waitFor({
+  83  |                     timeout: 30000
+  84  |                 });
+  85  |         } catch (error) {
+  86  |             // Check if already logged in
+  87  |             const currentUrl = this.page.url();
+  88  |             if (!currentUrl.includes('sign-in')) {
+  89  |                 console.log('Already logged in, skipping OTP');
+  90  |                 return;
+  91  |             }
+  92  |             throw error;
+  93  |         }
+  94  | 
+  95  |         // ======================================================
+  96  |         // OPEN MAILINATOR
+  97  |         // ======================================================
+  98  | 
+  99  |         const mailPage =
+  100 |             await this.context.newPage();
+  101 | 
+  102 |         try {
+  103 | 
+  104 |             await mailPage.goto(
+  105 |                 'https://www.mailinator.com/v4/public/inboxes.jsp?to=max',
+  106 |                 {
+  107 |                     waitUntil: 'domcontentloaded'
+  108 |                 }
+  109 |             );
+  110 | 
+  111 |             // Wait for inbox table
+  112 |             await mailPage
+  113 |                 .getByRole('cell')
+  114 |                 .first()
+  115 |                 .waitFor({
+  116 |                     timeout: 30000
+  117 |                 });
+  118 | 
+  119 |             // Retry search for OTP email
+  120 |             const latestMail =
+  121 |                 mailPage.getByRole('cell', {
+  122 |                     name: /is your ARIS/i
+  123 |                 }).first();
+  124 | 
+  125 |             await expect(latestMail)
+> 126 |                 .toBeVisible({
+      |                  ^ Error: expect(locator).toBeVisible() failed
+  127 |                     timeout: 60000
+  128 |                 });
+  129 | 
+  130 |             // Extract OTP
+  131 |             const subjectText =
+  132 |                 await latestMail.textContent()
+  133 |                 || '';
+  134 | 
+  135 |             const otp =
+  136 |                 subjectText.match(/\d{5}/)?.[0]
+  137 |                 || '';
+  138 | 
+  139 |             console.log(
+  140 |                 'OTP FOUND:',
+  141 |                 otp
+  142 |             );
+  143 | 
+  144 |             expect(otp).not.toBe('');
+  145 | 
+  146 |             // Open email
+  147 |             await latestMail.click();
+  148 | 
+  149 |             // Wait for email content to load
+  150 |             await mailPage.waitForTimeout(2000);
+  151 | 
+  152 |             // ======================================================
+  153 |             // RETURN TO MAIN PAGE
+  154 |             // ======================================================
+  155 | 
+  156 |             await this.page.bringToFront();
+  157 | 
+  158 |             // OTP Inputs - wait for them to be ready
+  159 |             const otpBoxes =
+  160 |                 this.page.getByRole('textbox');
+  161 | 
+  162 |             await expect(
+  163 |                 otpBoxes.first()
+  164 |             ).toBeVisible({ timeout: 10000 });
+  165 | 
+  166 |             // Fill OTP
+  167 |             for (
+  168 |                 let i = 0;
+  169 |                 i < otp.length;
+  170 |                 i++
+  171 |             ) {
+  172 | 
+  173 |                 await otpBoxes
+  174 |                     .nth(i)
+  175 |                     .fill(otp[i]);
+  176 |             }
+  177 | 
+  178 |             // Confirm OTP
+  179 |             await this.confirmCodeButton.click();
+  180 | 
+  181 |             // Wait successful login
+  182 |             await this.page.waitForLoadState(
+  183 |                 'networkidle'
+  184 |             );
+  185 | 
+  186 |         } catch (error) {
+  187 |             console.error('Login failed:', error);
+  188 |             throw error;
+  189 |         } finally {
+  190 | 
+  191 |             // IMPORTANT:
+  192 |             // Close Mailinator tab
+  193 |             // Prevents extra tabs accumulating
+  194 |             await mailPage.close();
+  195 |         }
+  196 |     }
+  197 | }
+```

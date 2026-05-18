@@ -1,0 +1,17 @@
+Error in verifyCardInformation: Error: Card information not found on the page. Tried multiple selectors.
+    at CitizenSearchPage.verifyCardInformation (/Users/adnan/Documents/Aris Automantion - Ady/pages/citizen_search.page.ts:342:19)
+    at /Users/adnan/Documents/Aris Automantion - Ady/tests/citizen_search.spec.ts:414:13
+    at TestStepInfoImpl._runStepBody (/Users/adnan/Documents/Aris Automantion - Ady/node_modules/playwright/lib/worker/workerProcessEntry.js:2719:14)
+    at /Users/adnan/Documents/Aris Automantion - Ady/node_modules/playwright/lib/common/index.js:2398:20
+    at raceAgainstDeadline (/Users/adnan/Documents/Aris Automantion - Ady/node_modules/playwright-core/lib/coreBundle.js:4364:10)
+    at /Users/adnan/Documents/Aris Automantion - Ady/node_modules/playwright/lib/common/index.js:2396:19
+    at _TestTypeImpl._step (/Users/adnan/Documents/Aris Automantion - Ady/node_modules/playwright/lib/common/index.js:2393:12)
+    at /Users/adnan/Documents/Aris Automantion - Ady/tests/citizen_search.spec.ts:413:9
+    at /Users/adnan/Documents/Aris Automantion - Ady/node_modules/playwright/lib/worker/workerProcessEntry.js:3045:9
+    at /Users/adnan/Documents/Aris Automantion - Ady/node_modules/playwright/lib/worker/workerProcessEntry.js:2537:11
+    at TimeoutManager.withRunnable (/Users/adnan/Documents/Aris Automantion - Ady/node_modules/playwright/lib/worker/workerProcessEntry.js:1816:14)
+    at TestInfoImpl._runWithTimeout (/Users/adnan/Documents/Aris Automantion - Ady/node_modules/playwright/lib/worker/workerProcessEntry.js:2535:7)
+    at /Users/adnan/Documents/Aris Automantion - Ady/node_modules/playwright/lib/worker/workerProcessEntry.js:3043:7
+    at WorkerMain._runTest (/Users/adnan/Documents/Aris Automantion - Ady/node_modules/playwright/lib/worker/workerProcessEntry.js:3016:5)
+    at WorkerMain.runTestGroup (/Users/adnan/Documents/Aris Automantion - Ady/node_modules/playwright/lib/worker/workerProcessEntry.js:2911:9)
+    at process.<anonymous> (/Users/adnan/Documents/Aris Automantion - Ady/node_modules/playwright/lib/common/index.js:1955:25)

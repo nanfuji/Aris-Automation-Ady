@@ -1,0 +1,6 @@
+OTP FOUND: 50355
+⚠ Test 1 (Valid ID) encountered an error: TimeoutError: locator.waitFor: Timeout 30000ms exceeded.
+Call log:
+  - waiting for getByRole('button', { name: 'Citizens' }) to be visible
+
+⚠ Continuing with remaining tests...

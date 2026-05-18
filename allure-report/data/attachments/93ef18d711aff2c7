@@ -1,0 +1,300 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: citizen_search.spec.ts >> Citizen Search Functionality >> Citizen Search - Cards
+- Location: tests/citizen_search.spec.ts:184:9
+
+# Error details
+
+```
+TimeoutError: locator.waitFor: Timeout 30000ms exceeded.
+Call log:
+  - waiting for getByText(/ARIS Bayambang Card/i) to be visible
+
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e1]:
+  - generic [ref=e2]:
+    - region "Notifications Alt+T"
+    - generic [ref=e3]:
+      - list [ref=e7]:
+        - button "Dashboard" [ref=e8] [cursor=pointer]:
+          - img [ref=e9]
+        - button "Citizens" [ref=e11] [cursor=pointer]:
+          - img [ref=e12]
+        - button "Events" [ref=e15] [cursor=pointer]:
+          - img [ref=e16]
+        - button "Card" [ref=e18] [cursor=pointer]:
+          - img [ref=e19]
+        - button "System Hierarchy" [ref=e21] [cursor=pointer]:
+          - img [ref=e22]
+        - generic [ref=e25]:
+          - button "Settings" [ref=e26] [cursor=pointer]:
+            - img [ref=e27]
+          - button "Log out (Ad Allcard)" [active] [ref=e29] [cursor=pointer]:
+            - img [ref=e30]
+      - generic [ref=e36]:
+        - generic [ref=e38]:
+          - generic [ref=e40]:
+            - img [ref=e41]
+            - generic [ref=e43]:
+              - paragraph [ref=e44]: KEVIN DURANT SR
+              - 'heading "Birth Date: November 09, 1979" [level=6] [ref=e45]'
+          - button "Manage Transactions" [ref=e46] [cursor=pointer]:
+            - img [ref=e47]
+            - paragraph [ref=e49]: Manage Transactions
+          - button "Return to List" [ref=e50] [cursor=pointer]:
+            - img [ref=e51]
+            - paragraph [ref=e53]: Return to List
+        - generic [ref=e56]:
+          - heading "Card" [level=3] [ref=e58]:
+            - img [ref=e59]
+            - text: Card
+          - generic [ref=e62]:
+            - tablist [ref=e66]:
+              - tab "Basic Information" [ref=e67] [cursor=pointer]:
+                - generic [ref=e68]: Basic Information
+              - tab "Contact" [ref=e69] [cursor=pointer]:
+                - generic [ref=e70]: Contact
+              - tab "Address" [ref=e71] [cursor=pointer]:
+                - generic [ref=e72]: Address
+              - tab "Relationship" [ref=e73] [cursor=pointer]:
+                - generic [ref=e74]: Relationship
+              - tab "Photo & Sig" [ref=e75] [cursor=pointer]:
+                - generic [ref=e76]: Photo & Sig
+              - tab "Valid ID" [ref=e77] [cursor=pointer]:
+                - generic [ref=e78]: Valid ID
+              - tab "Proof of Billing" [ref=e79] [cursor=pointer]:
+                - generic [ref=e80]: Proof of Billing
+              - tab "Other Info" [ref=e81] [cursor=pointer]:
+                - generic [ref=e82]: Other Info
+              - tab "Card" [selected] [ref=e83] [cursor=pointer]:
+                - generic [ref=e84]: Card
+            - generic [ref=e86]:
+              - button "Add a Card" [ref=e88] [cursor=pointer]:
+                - img [ref=e89]
+                - generic [ref=e91]: Add a Card
+              - button "Add a Card" [ref=e93] [cursor=pointer]:
+                - paragraph [ref=e94]:
+                  - img [ref=e95]
+                  - generic [ref=e97]: Add a Card
+        - generic [ref=e98]:
+          - paragraph [ref=e99]: "Last Modified: January 22, 2026 12:15 PM"
+          - paragraph [ref=e100]: "By user: apparas"
+  - generic [ref=e101]: "0"
+```
+
+# Test source
+
+```ts
+  82  | 
+  83  |         const targetCell = this.page.getByRole('cell', { name: expectedLastName, exact: true }).first();
+  84  | 
+  85  |         await targetCell.waitFor({ state: 'visible', timeout: 10000 });
+  86  | 
+  87  |         await expect(targetCell).toBeVisible();
+  88  | 
+  89  |         const actualText = await targetCell.textContent();
+  90  |         expect(actualText?.trim().toUpperCase()).toBe(expectedLastName.toUpperCase());
+  91  | 
+  92  |         console.log(`✓ Search result verified: Found "${expectedLastName}"`);
+  93  |     }
+  94  | 
+  95  |     async applyFilterByGender(gender: string) {
+  96  | 
+  97  |         await this.filterButton.click();
+  98  |         await this.page.getByRole('button', { name: 'Open' }).first().click();
+  99  |         await this.page.getByRole('option', { name: gender, exact: true }).click();
+  100 |         await this.applyFilterButton.click();
+  101 |     }
+  102 | 
+  103 |     async openCitizenRecord(citizenName: string) {
+  104 |         await this.page.getByRole('cell', { name: citizenName, exact: true }).first().click();
+  105 |     }
+  106 | 
+  107 |     async openCitizenRecordByIndex(rowIndex: number) {
+  108 |         await this.page.locator(`tr:nth-child(${rowIndex}) > td:nth-child(2)`).click();
+  109 |     }
+  110 | 
+  111 |     async openCitizenRecordByCellIndex(cellIndex: number) {
+  112 |         await this.page.getByRole('cell').nth(cellIndex).click();
+  113 |     }
+  114 | 
+  115 |     async openValidIDTab() {
+  116 |         await this.validIDTab.click();
+  117 |     }
+  118 | 
+  119 |     async openPhotoSigTab() {
+  120 |         await this.photoSigTab.click();
+  121 |     }
+  122 | 
+  123 |     async openRelationshipTab() {
+  124 |         await this.relationshipTab.click();
+  125 |     }
+  126 | 
+  127 |     async openAddressTab() {
+  128 |         await this.addressTab.click();
+  129 |     }
+  130 | 
+  131 |     async openProofOfBillingTab() {
+  132 |         await this.proofOfBillingTab.click();
+  133 |     }
+  134 | 
+  135 |     async openContactTab() {
+  136 |         await this.contactTab.click();
+  137 |     }
+  138 | 
+  139 |     async openCardsTab() {
+  140 |         await this.cardsTab.click();
+  141 |     }
+  142 | 
+  143 |     async openOtherInfoTab() {
+  144 |         await this.otherInfoTab.click();
+  145 |     }
+  146 | 
+  147 |     async clickValidIDImage() {
+  148 |         await this.page.getByRole('img').first().click();
+  149 |     }
+  150 | 
+  151 |     async verifyRelationshipContainer() {
+  152 |         await this.page.locator('.MuiGrid-root.MuiGrid-container.MuiGrid-direction-xs-row.MuiGrid-spacing-xs-4').waitFor({
+  153 |             state: 'visible'
+  154 |         });
+  155 |     }
+  156 | 
+  157 |     async verifyAddressComboboxes() {
+  158 |         await this.page.getByRole('combobox', { name: 'Select an item...' }).first().waitFor({
+  159 |             state: 'visible'
+  160 |         });
+  161 |     }
+  162 | 
+  163 |     async verifyProofOfBillingCombobox() {
+  164 |         await this.page.getByRole('combobox', { name: 'Select an item...' }).waitFor({
+  165 |             state: 'visible'
+  166 |         });
+  167 |     }
+  168 | 
+  169 |     async verifyContactFields() {
+  170 |         await this.page.locator('input[name="mobileNos"]').waitFor({
+  171 |             state: 'visible'
+  172 |         });
+  173 |     }
+  174 | 
+  175 |     async verifyBasicInformationFields() {
+  176 |         await this.page.getByRole('textbox', { name: 'e.g. JUAN' }).waitFor({
+  177 |             state: 'visible'
+  178 |         });
+  179 |     }
+  180 | 
+  181 |     async verifyCardInformation() {
+> 182 |         await this.page.getByText(/ARIS Bayambang Card/i).waitFor({
+      |                                                           ^ TimeoutError: locator.waitFor: Timeout 30000ms exceeded.
+  183 |             state: 'visible'
+  184 |         });
+  185 |     }
+  186 | 
+  187 |     async verifyOtherInfoComboboxes() {
+  188 |         await this.page.getByRole('combobox').first().waitFor({
+  189 |             state: 'visible'
+  190 |         });
+  191 |     }
+  192 | 
+  193 |     async verifyPhotoSignatureImages() {
+  194 |         await this.page.getByRole('img').first().waitFor({
+  195 |             state: 'visible'
+  196 |         });
+  197 |     }
+  198 | 
+  199 |     async enableEdit() {
+  200 | 
+  201 |         await this.page.getByRole('button', { name: 'Edit' }).first().click();
+  202 |         await this.page.getByRole('button', { name: 'Yes, enable edit' }).click();
+  203 |     }
+  204 | 
+  205 |     async enableEditForRelationship() {
+  206 | 
+  207 |         await this.page.getByRole('button', { name: 'Edit' }).click();
+  208 |         await this.page.getByRole('button', { name: 'Yes, enable edit' }).click();
+  209 |     }
+  210 | 
+  211 |     async editValidID() {
+  212 | 
+  213 |         await this.page.getByRole('button', { name: 'Edit' }).click();
+  214 |         await this.page.getByRole('button').first().click();
+  215 |         await this.page.locator('.cropper-face').click();
+  216 |         await this.page.locator('.cropper-point.point-se').click();
+  217 |         await this.page.locator('.cropper-drag-box').click();
+  218 |         await this.page.getByRole('button', { name: 'Crop' }).click();
+  219 |         await this.saveChangesButton.click();
+  220 |         await this.saveButton.click();
+  221 |         await this.closeButton.click();
+  222 |     }
+  223 | 
+  224 |     async editPhotoSignature() {
+  225 | 
+  226 |         await this.page.getByRole('button', { name: 'Edit' }).first().click();
+  227 |         await this.page.getByRole('button', { name: 'Use Webcam' }).click();
+  228 |         await this.page.getByRole('button').first().click();
+  229 |         await this.page.getByRole('button', { name: 'Submit' }).click();
+  230 |         await this.page.getByRole('button', { name: 'Edit' }).nth(1).click();
+  231 |         await this.page.getByRole('button', { name: 'Use Touchscreen' }).click();
+  232 |         await this.page.getByRole('button', { name: 'Use Touchscreen' }).click();
+  233 |     }
+  234 | 
+  235 |     async editRelationship(
+  236 |         firstName1: string,
+  237 |         middleName1: string,
+  238 |         lastName1: string,
+  239 |         firstName2: string,
+  240 |         middleName2: string,
+  241 |         lastName2: string
+  242 |     ) {
+  243 | 
+  244 |         await this.page.getByRole('textbox', { name: 'e.g. JUAN', exact: true }).fill(firstName1);
+  245 |         await this.page.locator('input[name="relationship.0.middleName"]').fill(middleName1);
+  246 |         await this.page.locator('input[name="relationship.0.lastName"]').fill(lastName1);
+  247 |         await this.page.getByRole('textbox', { name: 'e.g. JUANA' }).fill(firstName2);
+  248 |         await this.page.locator('input[name="relationship.1.middleName"]').fill(middleName2);
+  249 |         await this.page.locator('input[name="relationship.1.lastName"]').fill(lastName2);
+  250 |     }
+  251 | 
+  252 |     async editAddress(
+  253 |         country: string,
+  254 |         province: string,
+  255 |         municipality: string,
+  256 |         barangay: string
+  257 |     ) {
+  258 | 
+  259 |         await this.page.getByRole('button', { name: 'Open' }).first().click();
+  260 |         await this.page.getByRole('option', { name: country }).click();
+  261 |         await this.page.getByRole('button', { name: 'Open' }).nth(1).click();
+  262 |         await this.page.getByRole('option', { name: province }).click();
+  263 |         await this.page.getByRole('button', { name: 'Open' }).nth(3).click();
+  264 |         await this.page.getByRole('option', { name: municipality }).click();
+  265 |         await this.page.getByRole('button', { name: 'Open' }).nth(4).click();
+  266 |         await this.page.getByRole('option', { name: barangay }).click();
+  267 |     }
+  268 | 
+  269 |     async saveChanges() {
+  270 | 
+  271 |         await this.saveChangesButton.click();
+  272 |         await this.saveButton.click();
+  273 |         await this.closeButton.click();
+  274 |     }
+  275 | 
+  276 |     async saveRelationshipChanges() {
+  277 | 
+  278 |         await this.saveChangesButton.click();
+  279 |         await this.saveButton.click();
+  280 |         await this.closeButton.click();
+  281 |     }
+  282 | }
+```

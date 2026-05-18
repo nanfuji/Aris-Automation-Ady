@@ -1,0 +1,255 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: citizen_search.spec.ts >> Citizen Search Functionality >> Citizen Search - Cards
+- Location: tests/citizen_search.spec.ts:377:9
+
+# Error details
+
+```
+Error: Card information not found on the page. Tried multiple selectors.
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e1]:
+  - generic [ref=e2]:
+    - region "Notifications Alt+T"
+    - generic [ref=e105]:
+      - img [ref=e108]
+      - generic [ref=e111]:
+        - generic [ref=e112]:
+          - heading "Welcome back" [level=1] [ref=e113]
+          - heading "Please login to continue." [level=6] [ref=e114]
+        - generic [ref=e117]:
+          - generic [ref=e119]: Email
+          - generic [ref=e122]:
+            - img [ref=e124]
+            - textbox "Enter your email address" [active] [ref=e127]
+            - group
+        - generic [ref=e130]:
+          - generic [ref=e132]: Password
+          - generic [ref=e135]:
+            - img [ref=e137]
+            - textbox "••••••••••" [ref=e139]
+            - button "SHOW" [ref=e141] [cursor=pointer]
+            - group
+        - button "Log in" [disabled]
+        - link "Forgot your password?" [ref=e142] [cursor=pointer]:
+          - /url: /forgot-password
+          - paragraph [ref=e143]: Forgot your password?
+  - generic [ref=e101]: "0"
+```
+
+# Test source
+
+```ts
+  242 | 
+  243 |     async openAddressTab() {
+  244 | 
+  245 |         await this.addressTab.click();
+  246 |     }
+  247 | 
+  248 |     async openProofOfBillingTab() {
+  249 | 
+  250 |         await this.proofOfBillingTab.click();
+  251 |     }
+  252 | 
+  253 |     async openContactTab() {
+  254 | 
+  255 |         await this.contactTab.click();
+  256 |     }
+  257 | 
+  258 |     async openCardsTab() {
+  259 | 
+  260 |         await this.cardsTab.click();
+  261 |     }
+  262 | 
+  263 |     async openOtherInfoTab() {
+  264 | 
+  265 |         await this.otherInfoTab.click();
+  266 |     }
+  267 | 
+  268 |     async clickValidIDImage() {
+  269 | 
+  270 |         await this.page.getByRole('img').first().click();
+  271 |     }
+  272 | 
+  273 |     async verifyRelationshipContainer() {
+  274 | 
+  275 |         await this.page.locator('.MuiGrid-root.MuiGrid-container.MuiGrid-direction-xs-row.MuiGrid-spacing-xs-4').waitFor({
+  276 |             state: 'visible'
+  277 |         });
+  278 |     }
+  279 | 
+  280 |     async verifyAddressComboboxes() {
+  281 | 
+  282 |         await this.page.getByRole('combobox', { name: 'Select an item...' }).first().waitFor({
+  283 |             state: 'visible'
+  284 |         });
+  285 |     }
+  286 | 
+  287 |     async verifyProofOfBillingCombobox() {
+  288 | 
+  289 |         await this.page.getByRole('combobox', { name: 'Select an item...' }).waitFor({
+  290 |             state: 'visible'
+  291 |         });
+  292 |     }
+  293 | 
+  294 |     async verifyContactFields() {
+  295 | 
+  296 |         await this.page.locator('input[name="mobileNos"]').waitFor({
+  297 |             state: 'visible'
+  298 |         });
+  299 |     }
+  300 | 
+  301 |     async verifyBasicInformationFields() {
+  302 | 
+  303 |         await this.page.getByRole('textbox', { name: 'e.g. JUAN' }).waitFor({
+  304 |             state: 'visible'
+  305 |         });
+  306 |     }
+  307 | 
+  308 |     async verifyCardInformation() {
+  309 | 
+  310 |     try {
+  311 |         // Try multiple possible selectors for card information
+  312 |         const cardSelectors = [
+  313 |             this.page.getByText(/ARIS Bayambang Card/i),
+  314 |             this.page.getByText(/Card/i),
+  315 |             this.page.locator('[class*="card"]'),
+  316 |             this.page.locator('.MuiCard-root')
+  317 |         ];
+  318 |         
+  319 |         let cardFound = false;
+  320 |         let lastError = null;
+  321 |         
+  322 |         for (const selector of cardSelectors) {
+  323 |             try {
+  324 |                 await selector.first().waitFor({ 
+  325 |                     state: 'visible', 
+  326 |                     timeout: 5000 
+  327 |                 });
+  328 |                 cardFound = true;
+  329 |                 console.log('✓ Card information found');
+  330 |                 break;
+  331 |             } catch (error) {
+  332 |                 lastError = error;
+  333 |                 continue;
+  334 |             }
+  335 |         }
+  336 |         
+  337 |         if (!cardFound) {
+  338 |             // Take screenshot for debugging
+  339 |             const screenshot = await this.page.screenshot();
+  340 |             await allure.attachment('Card Tab Screenshot', screenshot, 'image/png');
+  341 |             
+> 342 |             throw new Error('Card information not found on the page. Tried multiple selectors.');
+      |                   ^ Error: Card information not found on the page. Tried multiple selectors.
+  343 |         }
+  344 |         
+  345 |     } catch (error) {
+  346 |         console.error('Error in verifyCardInformation:', error);
+  347 |         throw error; // Re-throw to fail the test
+  348 |     }
+  349 | }
+  350 | 
+  351 |     async verifyOtherInfoComboboxes() {
+  352 | 
+  353 |         await this.page.getByRole('combobox').first().waitFor({
+  354 |             state: 'visible'
+  355 |         });
+  356 |     }
+  357 | 
+  358 |     async verifyPhotoSignatureImages() {
+  359 | 
+  360 |         await this.page.getByRole('img').first().waitFor({
+  361 |             state: 'visible'
+  362 |         });
+  363 |     }
+  364 | 
+  365 |     async enableEdit() {
+  366 | 
+  367 |         await this.page
+  368 |             .getByRole('button', {
+  369 |                 name: 'Edit'
+  370 |             })
+  371 |             .first()
+  372 |             .click();
+  373 | 
+  374 |         await this.page
+  375 |             .getByRole('button', {
+  376 |                 name: 'Yes, enable edit'
+  377 |             })
+  378 |             .click();
+  379 |     }
+  380 | 
+  381 |     async enableEditForRelationship() {
+  382 | 
+  383 |         await this.page
+  384 |             .getByRole('button', {
+  385 |                 name: 'Edit'
+  386 |             })
+  387 |             .click();
+  388 | 
+  389 |         await this.page
+  390 |             .getByRole('button', {
+  391 |                 name: 'Yes, enable edit'
+  392 |             })
+  393 |             .click();
+  394 |     }
+  395 | 
+  396 |     async editValidID() {
+  397 | 
+  398 |         await this.page
+  399 |             .getByRole('button', {
+  400 |                 name: 'Edit'
+  401 |             })
+  402 |             .click();
+  403 | 
+  404 |         await this.page
+  405 |             .getByRole('button')
+  406 |             .first()
+  407 |             .click();
+  408 | 
+  409 |         await this.page
+  410 |             .locator('.cropper-face')
+  411 |             .click();
+  412 | 
+  413 |         await this.page
+  414 |             .locator('.cropper-point.point-se')
+  415 |             .click();
+  416 | 
+  417 |         await this.page
+  418 |             .locator('.cropper-drag-box')
+  419 |             .click();
+  420 | 
+  421 |         await this.page
+  422 |             .getByRole('button', {
+  423 |                 name: 'Crop'
+  424 |             })
+  425 |             .click();
+  426 | 
+  427 |         await this.saveChangesButton.click();
+  428 | 
+  429 |         await this.saveButton.click();
+  430 | 
+  431 |         await this.closeButton.click();
+  432 |     }
+  433 | 
+  434 |     async editPhotoSignature() {
+  435 | 
+  436 |         await this.page
+  437 |             .getByRole('button', {
+  438 |                 name: 'Edit'
+  439 |             })
+  440 |             .first()
+  441 |             .click();
+  442 | 
+```

@@ -1,0 +1,4 @@
+⚠ Test 7 (Cards) encountered an error: TimeoutError: locator.waitFor: Timeout 30000ms exceeded.
+Call log:
+  - waiting for getByText(/ARIS Bayambang Card/i) to be visible
+

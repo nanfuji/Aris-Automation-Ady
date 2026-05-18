@@ -1,0 +1,4 @@
+✓ Search result verified: Found "DURANT"
+Running cleanup...
+Logout successful
+Context closed

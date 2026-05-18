@@ -1,0 +1,6 @@
+Resetting to dashboard before test...
+Successfully returned to dashboard
+✓ Search result verified: Found "DURANT"
+Running final cleanup after all tests...
+Logout successful
+Context closed

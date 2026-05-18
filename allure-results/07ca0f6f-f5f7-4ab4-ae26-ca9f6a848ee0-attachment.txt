@@ -1,0 +1,3 @@
+Resetting to dashboard before test...
+Successfully returned to dashboard
+✓ Search result verified: Found "DURANT"

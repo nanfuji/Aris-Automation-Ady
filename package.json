@@ -1,7 +1,12 @@
 {
   "scripts": {
     "test": "npx playwright test",
-    "report": "npx allure serve allure-results"
+    "test:allure": "npx playwright test --reporter=allure-playwright",
+    "report:allure": "allure generate allure-results --clean && allure open",
+    "report:allure:serve": "npx allure serve allure-results",
+    "report:allure:generate": "allure generate allure-results --clean",
+    "report:html": "npx playwright show-report",
+    "clean": "rm -rf allure-results allure-report test-results"
   },
   "devDependencies": {
     "@playwright/test": "^1.60.0",

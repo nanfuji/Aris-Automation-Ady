@@ -12,7 +12,9 @@ export class LoginPage {
 
     readonly emailInput: Locator;
     readonly passwordInput: Locator;
+
     readonly loginButton: Locator;
+
     readonly confirmCodeButton: Locator;
 
     constructor(
@@ -21,6 +23,7 @@ export class LoginPage {
     ) {
 
         this.page = page;
+
         this.context = context;
 
         this.emailInput =
@@ -42,12 +45,16 @@ export class LoginPage {
             page.getByRole('button', {
                 name: /confirm code/i
             });
-
     }
 
     async navigate() {
 
-        await this.page.goto('https://sit-bayambang.aris.ph/sign-in');
+        await this.page.goto(
+            'https://sit-bayambang.aris.ph/sign-in',
+            {
+                waitUntil: 'networkidle'
+            }
+        );
     }
 
     async login(
@@ -55,62 +62,136 @@ export class LoginPage {
         password: string
     ) {
 
-        // Enter Credentials
+        // ======================================================
+        // ENTER LOGIN CREDENTIALS
+        // ======================================================
+
         await this.emailInput.fill(email);
 
         await this.passwordInput.fill(password);
 
         await this.loginButton.click();
 
+        // ======================================================
+        // WAIT FOR OTP MODAL
+        // ======================================================
 
-        // Wait for OTP Modal
-        await this.page.getByText('One Time Password').waitFor();
-
-
-        // Open Mailinator
-        const mailPage = await this.context.newPage();
-
-        await mailPage.goto('https://www.mailinator.com/v4/public/inboxes.jsp?to=adnan');
-
-        await mailPage.waitForLoadState('domcontentloaded');
-
-        await mailPage.waitForTimeout(20000);
-
-
-        // Get Latest OTP Email
-        const latestMail = mailPage.getByRole('cell', { name: /is your ARIS/i }).first();
-
-        await latestMail.waitFor();
-
-        const subjectText = await latestMail.textContent() || '';
-
-        const otp = subjectText.match(/\d{5}/)?.[0] || '';
-
-        console.log('OTP FOUND:', otp);
-
-        expect(otp).not.toBe('');
-
-        await latestMail.click();
-
-
-        // Return to ARIS Page
-        await this.page.bringToFront();
-
-
-        // OTP Inputs
-        const otpBoxes = this.page.getByRole('textbox');
-
-        await expect(otpBoxes.first()).toBeVisible();
-
-        // Fill OTP
-        for (let i = 0; i < otp.length; i++) {
-            await otpBoxes
-                .nth(i)
-                .fill(otp[i]);
+        try {
+            await this.page
+                .getByText('One Time Password')
+                .waitFor({
+                    timeout: 30000
+                });
+        } catch (error) {
+            // Check if already logged in
+            const currentUrl = this.page.url();
+            if (!currentUrl.includes('sign-in')) {
+                console.log('Already logged in, skipping OTP');
+                return;
+            }
+            throw error;
         }
-        // Confirm OTP
-        await this.confirmCodeButton.click();
 
+        // ======================================================
+        // OPEN MAILINATOR
+        // ======================================================
+
+        const mailPage =
+            await this.context.newPage();
+
+        try {
+
+            await mailPage.goto(
+                'https://www.mailinator.com/v4/public/inboxes.jsp?to=adnan',
+                {
+                    waitUntil: 'domcontentloaded'
+                }
+            );
+
+            // Wait for inbox table
+            await mailPage
+                .getByRole('cell')
+                .first()
+                .waitFor({
+                    timeout: 30000
+                });
+
+            // Retry search for OTP email
+            const latestMail =
+                mailPage.getByRole('cell', {
+                    name: /is your ARIS/i
+                }).first();
+
+            await expect(latestMail)
+                .toBeVisible({
+                    timeout: 60000
+                });
+
+            // Extract OTP
+            const subjectText =
+                await latestMail.textContent()
+                || '';
+
+            const otp =
+                subjectText.match(/\d{5}/)?.[0]
+                || '';
+
+            console.log(
+                'OTP FOUND:',
+                otp
+            );
+
+            expect(otp).not.toBe('');
+
+            // Open email
+            await latestMail.click();
+
+            // Wait for email content to load
+            await mailPage.waitForTimeout(2000);
+
+            // ======================================================
+            // RETURN TO MAIN PAGE
+            // ======================================================
+
+            await this.page.bringToFront();
+
+            // OTP Inputs - wait for them to be ready
+            const otpBoxes =
+                this.page.getByRole('textbox');
+
+            await expect(
+                otpBoxes.first()
+            ).toBeVisible({ timeout: 10000 });
+
+            // Fill OTP
+            for (
+                let i = 0;
+                i < otp.length;
+                i++
+            ) {
+
+                await otpBoxes
+                    .nth(i)
+                    .fill(otp[i]);
+            }
+
+            // Confirm OTP
+            await this.confirmCodeButton.click();
+
+            // Wait successful login
+            await this.page.waitForLoadState(
+                'networkidle'
+            );
+
+        } catch (error) {
+            console.error('Login failed:', error);
+            throw error;
+        } finally {
+
+            // IMPORTANT:
+            // Close Mailinator tab
+            // Prevents extra tabs accumulating
+            await mailPage.close();
+        }
     }
-
 }

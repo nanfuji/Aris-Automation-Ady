@@ -1,0 +1,3 @@
+✓ Search result verified: Found "DURANT"
+⚠ Test 7 (Cards) encountered an error: Error: Card information not found on the page. Tried multiple selectors.
+⚠ Continuing with remaining tests...

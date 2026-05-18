@@ -1,49 +1,59 @@
-import { defineConfig, devices } from '@playwright/test';
+import { defineConfig } from '@playwright/test';
 
-/**
- * Read environment variables from file.
- * https://github.com/motdotla/dotenv
- */
-// import dotenv from 'dotenv';
-// import path from 'path';
-// dotenv.config({ path: path.resolve(__dirname, '.env') });
-
-/**
- * See https://playwright.dev/docs/test-configuration.
- */
 export default defineConfig({
-  testDir: './tests',
-  /* Run tests in files in parallel */
-  fullyParallel: false,
-  /* Fail the build on CI if you accidentally left test.only in the source code. */
-  forbidOnly: false,
-  /* Retry on CI only */
-  retries: 0,
-  /* Opt out of parallel tests on CI. */
-  workers: 1,
-  /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: 'html',
-  /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
-  use: {
-    /* Base URL to use in actions like `await page.goto('')`. */
-    // baseURL: 'http://localhost:3000',
 
-    trace: 'on-first-retry',
-  },
+    testDir: './tests',
 
-  /* Configure projects for major browsers */
-  projects: [
-    {
-      name: 'setup',
-      testMatch: /.*login\.spec\.ts/
+    fullyParallel: false,  // Keep false to maintain shared session
+    
+    forbidOnly: false,
+
+    retries: 0,
+
+    workers: 1,  // Single worker to share browser session
+
+
+    maxFailures: 0,
+
+    reporter: [
+        ['html'],
+        ['list'],
+        ['json', { outputFile: 'test-results.json' }],
+        ['allure-playwright', { outputFolder: 'allure-results' }]
+    ],
+
+    timeout: 300000,
+
+    expect: {
+        timeout: 10000
     },
-    {
-      name: 'chromium',
-      dependencies: ['setup'],
-      use: {
-        storageState:
-          'playwright/.auth/user.json'
-      }
-    }
-  ]
+
+    use: {
+
+        baseURL: 'https://sit-bayambang.aris.ph',
+
+        trace: 'retain-on-failure',
+
+        screenshot: 'only-on-failure',
+
+        video: 'retain-on-failure',
+
+        actionTimeout: 30000,
+
+        navigationTimeout: 60000,
+
+        ignoreHTTPSErrors: true
+    },
+
+    projects: [
+
+        {
+            name: 'chromium',
+            use: {
+                browserName: 'chromium',
+                viewport: { width: 1366, height: 768 },
+                headless: false  
+            }
+        }
+    ]
 });
