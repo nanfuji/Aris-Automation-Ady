@@ -1,0 +1,178 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: citizen_update.spec.ts >> Citizen Search Functionality >> Citizen Update - Edit Relationship
+- Location: tests/citizen_update.spec.ts:164:9
+
+# Error details
+
+```
+Error: locator.fill: Target page, context or browser has been closed
+Call log:
+  - waiting for getByRole('textbox', { name: 'e.g. JUAN', exact: true })
+    - locator resolved to <input readonly id="«rb6»" type="text" value="WAYNE" maxlength="100" autocomplete="on" aria-invalid="false" placeholder="e.g. JUAN" name="relationship.0.firstName" class="MuiInputBase-input MuiOutlinedInput-input Mui-readOnly MuiInputBase-readOnly css-2xxp4c"/>
+    - fill("WAYNe")
+  - attempting fill action
+    2 × waiting for element to be visible, enabled and editable
+      - element is not editable
+    - retrying fill action
+    - waiting 20ms
+    2 × waiting for element to be visible, enabled and editable
+      - element is not editable
+    - retrying fill action
+      - waiting 100ms
+    45 × waiting for element to be visible, enabled and editable
+       - element is not editable
+     - retrying fill action
+       - waiting 500ms
+    - waiting for element to be visible, enabled and editable
+  - element was detached from the DOM, retrying
+
+```
+
+# Test source
+
+```ts
+  178 | 
+  179 |     async verifyCardInformation() {
+  180 |         // Try multiple possible selectors
+  181 |         const cardSelectors = [
+  182 |             this.page.getByText(/ARIS Bayambang Card/i),
+  183 |             this.page.getByText(/Card/i),
+  184 |             this.page.locator('[class*="card"]'),
+  185 |             this.page.locator('.MuiCard-root')
+  186 |         ];
+  187 |         
+  188 |         let cardFound = false;
+  189 |         
+  190 |         for (const selector of cardSelectors) {
+  191 |             try {
+  192 |                 await selector.first().waitFor({ 
+  193 |                     state: 'visible', 
+  194 |                     timeout: 8000 
+  195 |                 });
+  196 |                 cardFound = true;
+  197 |                 console.log('✓ Card information found');
+  198 |                 break;
+  199 |             } catch (error) {
+  200 |                 continue;
+  201 |             }
+  202 |         }
+  203 |         
+  204 |         if (!cardFound) {
+  205 |             throw new Error('Card information not found on the page. Tried multiple selectors.');
+  206 |         }
+  207 |     }
+  208 | 
+  209 |     async verifyOtherInfoComboboxes() {
+  210 |         await this.page.getByRole('combobox').first().waitFor({
+  211 |             state: 'visible',
+  212 |             timeout: 30000
+  213 |         });
+  214 |     }
+  215 | 
+  216 |     async verifyPhotoSignatureImages() {
+  217 |         await this.page.getByRole('img').first().waitFor({
+  218 |             state: 'visible',
+  219 |             timeout: 30000
+  220 |         });
+  221 |     }
+  222 | 
+  223 |     async enableEdit() {
+  224 |         await this.page.getByRole('button', { name: 'Edit' }).first().click();
+  225 |         await this.page.getByRole('button', { name: 'Yes, enable edit' }).click();
+  226 |     }
+  227 | 
+  228 |     async enableEditForRelationship(firstName1: string, middleName1: string, lastName1: string, firstName2: string, middleName2: string, lastName2: string) {
+  229 |         await this.page.getByRole('button', { name: 'Edit' }).click();
+  230 |         await this.page.getByRole('button', { name: 'Yes, enable edit' }).click();
+  231 |         await this.page.getByRole('button', { name: 'Yes, enable edit' }).click();
+  232 |         await this.page.getByRole('textbox', { name: 'e.g. JUAN', exact: true }).click();
+  233 |         await this.page.getByRole('textbox', { name: 'e.g. JUAN', exact: true }).fill(firstName1);
+  234 |         await this.page.locator('input[name="relationship.0.middleName"]').click();
+  235 |         await this.page.locator('input[name="relationship.0.middleName"]').fill(middleName1);
+  236 |         await this.page.locator('input[name="relationship.0.lastName"]').click();
+  237 |         await this.page.locator('input[name="relationship.0.lastName"]').fill(lastName1);
+  238 |         await this.page.getByRole('textbox', { name: 'e.g. JUANA' }).click();
+  239 |         await this.page.getByRole('textbox', { name: 'e.g. JUANA' }).fill(firstName2);
+  240 |         await this.page.locator('input[name="relationship.1.middleName"]').click();
+  241 |         await this.page.locator('input[name="relationship.1.middleName"]').fill(middleName2);
+  242 |         await this.page.locator('input[name="relationship.1.lastName"]').click();
+  243 |         await this.page.locator('input[name="relationship.1.lastName"]').fill(lastName2);
+  244 |         await this.saveChangesButton.click();
+  245 |         await this.saveButton.click();
+  246 |         await this.closeButton.click();
+  247 |     }
+  248 | 
+  249 |     async editValidID() {
+  250 |         await this.page.getByRole('button', { name: 'Edit' }).nth(1).click();
+  251 |         await this.page.getByRole('button', { name: 'Yes, enable edit' }).click();
+  252 |         await this.page.getByRole('button', { name: 'Edit' }).click();
+  253 |         await this.page.getByRole('button').first().click();
+  254 |         await this.page.getByRole('button', { name: 'Crop' }).click();
+  255 |         await this.saveChangesButton.click();
+  256 |         await this.saveButton.click();
+  257 |         await this.closeButton.click();
+  258 |     }
+  259 | 
+  260 |     async editPhotoSignature() {
+  261 |         await this.page.getByRole('button', { name: 'Edit' }).first().click();
+  262 |         await this.page.getByRole('button', { name: 'Use Webcam' }).click();
+  263 |         await this.page.getByRole('button').first().click();
+  264 |         await this.page.getByRole('button', { name: 'Submit' }).click();
+  265 |         await this.page.getByRole('button', { name: 'Edit' }).nth(1).click();
+  266 |         await this.page.getByRole('button', { name: 'Use Touchscreen' }).click();
+  267 |         await this.page.getByRole('button', { name: 'Use Touchscreen' }).click();
+  268 |     }
+  269 | 
+  270 |     async editRelationship(
+  271 |         firstName1: string,
+  272 |         middleName1: string,
+  273 |         lastName1: string,
+  274 |         firstName2: string,
+  275 |         middleName2: string,
+  276 |         lastName2: string
+  277 |     ) {
+> 278 |         await this.page.getByRole('textbox', { name: 'e.g. JUAN', exact: true }).fill(firstName1);
+      |                                                                                  ^ Error: locator.fill: Target page, context or browser has been closed
+  279 |         await this.page.locator('input[name="relationship.0.middleName"]').fill(middleName1);
+  280 |         await this.page.locator('input[name="relationship.0.lastName"]').fill(lastName1);
+  281 |         await this.page.getByRole('textbox', { name: 'e.g. JUANA' }).fill(firstName2);
+  282 |         await this.page.locator('input[name="relationship.1.middleName"]').fill(middleName2);
+  283 |         await this.page.locator('input[name="relationship.1.lastName"]').fill(lastName2);
+  284 |     }
+  285 | 
+  286 |     async editAddress(
+  287 |         country: string,
+  288 |         province: string,
+  289 |         municipality: string,
+  290 |         barangay: string
+  291 |     ) {
+  292 |         await this.page.getByRole('button', { name: 'Open' }).first().click();
+  293 |         await this.page.getByRole('option', { name: country }).click();
+  294 |         await this.page.getByRole('button', { name: 'Open' }).nth(1).click();
+  295 |         await this.page.getByRole('option', { name: province }).click();
+  296 |         await this.page.getByRole('button', { name: 'Open' }).nth(3).click();
+  297 |         await this.page.getByRole('option', { name: municipality }).click();
+  298 |         await this.page.getByRole('button', { name: 'Open' }).nth(4).click();
+  299 |         await this.page.getByRole('option', { name: barangay }).click();
+  300 |     }
+  301 | 
+  302 |     async saveChanges() {
+  303 |         await this.saveChangesButton.click();
+  304 |         await this.saveButton.click();
+  305 |         await this.closeButton.click();
+  306 |     }
+  307 | 
+  308 |     async saveRelationshipChanges() {
+  309 |         await this.saveChangesButton.click();
+  310 |         await this.saveButton.click();
+  311 |         await this.closeButton.click();
+  312 |     }
+  313 | }
+```

@@ -1,0 +1,190 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: citizen_update.spec.ts >> Citizen Search Functionality >> Citizen Update - Edit Other Information
+- Location: tests/citizen_update.spec.ts:265:9
+
+# Error details
+
+```
+Error: locator.click: Error: strict mode violation: getByRole('option', { name: 'BARANGAY' }) resolved to 5 elements:
+    1) <p tabindex="-1" role="option" id="«rh2»-option-2" data-option-index="2" aria-disabled="false" aria-selected="false" class="MuiTypography-root MuiTypography-body1 MuiAutocomplete-option css-5hmv4m">BARANGAY SECTOR FROM V1</p> aka getByRole('option', { name: 'BARANGAY SECTOR FROM V1' })
+    2) <p tabindex="-1" role="option" id="«rh2»-option-3" data-option-index="3" aria-disabled="false" aria-selected="false" class="MuiTypography-root MuiTypography-body1 MuiAutocomplete-option css-5hmv4m">BARANGAY SECTOR FROM V2</p> aka getByRole('option', { name: 'BARANGAY SECTOR FROM V2' })
+    3) <p tabindex="-1" role="option" id="«rh2»-option-4" data-option-index="4" aria-disabled="false" aria-selected="false" class="MuiTypography-root MuiTypography-body1 MuiAutocomplete-option css-5hmv4m">BARANGAY TEAM SECTOR</p> aka getByRole('option', { name: 'BARANGAY TEAM SECTOR' })
+    4) <p tabindex="-1" role="option" id="«rh2»-option-6" data-option-index="6" aria-disabled="false" aria-selected="false" class="MuiTypography-root MuiTypography-body1 MuiAutocomplete-option css-5hmv4m">DCIT BARANGAY SECTOR</p> aka getByRole('option', { name: 'DCIT BARANGAY SECTOR' })
+    5) <p tabindex="-1" role="option" id="«rh2»-option-7" data-option-index="7" aria-disabled="false" aria-selected="false" class="MuiTypography-root MuiTypography-body1 MuiAutocomplete-option css-5hmv4m">DOH BARANGAY SECTOR UPDATED</p> aka getByRole('option', { name: 'DOH BARANGAY SECTOR UPDATED' })
+
+Call log:
+  - waiting for getByRole('option', { name: 'BARANGAY' })
+
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e1]:
+  - generic [ref=e2]:
+    - region "Notifications Alt+T"
+    - generic [ref=e289]:
+      - img [ref=e292]
+      - generic [ref=e295]:
+        - generic [ref=e296]:
+          - heading "Welcome back" [level=1] [ref=e297]
+          - heading "Please login to continue." [level=6] [ref=e298]
+        - generic [ref=e301]:
+          - generic [ref=e303]: Email
+          - generic [ref=e306]:
+            - img [ref=e308]
+            - textbox "Enter your email address" [active] [ref=e311]
+            - group
+        - generic [ref=e314]:
+          - generic [ref=e316]: Password
+          - generic [ref=e319]:
+            - img [ref=e321]
+            - textbox "••••••••••" [ref=e323]
+            - button "SHOW" [ref=e325] [cursor=pointer]
+            - group
+        - button "Log in" [disabled]
+        - link "Forgot your password?" [ref=e326] [cursor=pointer]:
+          - /url: /forgot-password
+          - paragraph [ref=e327]: Forgot your password?
+  - generic [ref=e285]: "0"
+```
+
+# Test source
+
+```ts
+  234 |     async editRelationship(firstName1: string, middleName1: string, lastName1: string, firstName2: string, middleName2: string, lastName2: string) {
+  235 |         await this.page.getByRole('button', { name: 'Edit' }).click();
+  236 |         await this.page.getByRole('button', { name: 'Yes, enable edit' }).click();
+  237 |         await this.page.getByRole('textbox', { name: 'e.g. JUAN', exact: true }).click();
+  238 |         await this.page.getByRole('textbox', { name: 'e.g. JUAN', exact: true }).fill(firstName1);
+  239 |         await this.page.locator('input[name="relationship.0.middleName"]').click();
+  240 |         await this.page.locator('input[name="relationship.0.middleName"]').fill(middleName1);
+  241 |         await this.page.locator('input[name="relationship.0.lastName"]').click();
+  242 |         await this.page.locator('input[name="relationship.0.lastName"]').fill(lastName1);
+  243 |         await this.page.getByRole('textbox', { name: 'e.g. JUANA' }).click();
+  244 |         await this.page.getByRole('textbox', { name: 'e.g. JUANA' }).fill(firstName2);
+  245 |         await this.page.locator('input[name="relationship.1.middleName"]').click();
+  246 |         await this.page.locator('input[name="relationship.1.middleName"]').fill(middleName2);
+  247 |         await this.page.locator('input[name="relationship.1.lastName"]').click();
+  248 |         await this.page.locator('input[name="relationship.1.lastName"]').fill(lastName2);
+  249 |     }
+  250 | 
+  251 |     async editValidID() {
+  252 |         await this.page.getByRole('button', { name: 'Edit' }).nth(1).click();
+  253 |         await this.page.getByRole('button', { name: 'Yes, enable edit' }).click();
+  254 |         await this.page.getByRole('button', { name: 'Edit' }).click();
+  255 |         await this.page.getByRole('button').first().click();
+  256 |         await this.page.getByRole('button', { name: 'Crop' }).click();
+  257 |     }
+  258 | 
+  259 |     async editAddress(
+  260 |         country: string,
+  261 |         province: string,
+  262 |         municipality: string,
+  263 |         barangay: string
+  264 |     ) {
+  265 |         await this.page.getByRole('button', { name: 'Edit' }).click();
+  266 |         await this.page.getByRole('button', { name: 'Yes, enable edit' }).click();
+  267 |         await this.page.getByRole('button', { name: 'Open' }).first().click();
+  268 |         await this.page.getByRole('option', { name: country }).click();
+  269 |         await this.page.getByRole('button', { name: 'Open' }).nth(1).click();
+  270 |         await this.page.getByRole('option', { name: province }).click();
+  271 |         await this.page.getByRole('button', { name: 'Open' }).nth(3).click();
+  272 |         await this.page.getByRole('option', { name: municipality }).click();
+  273 |         await this.page.getByRole('button', { name: 'Open' }).nth(4).click();
+  274 |         await this.page.getByRole('option', { name: barangay }).click();
+  275 |     }
+  276 | 
+  277 |     async editProofOfBilling() {
+  278 |         await this.page.getByRole('button', { name: 'Edit' }).nth(1).click();
+  279 |         await this.page.getByRole('button', { name: 'Yes, enable edit' }).click();
+  280 |         await this.page.getByRole('button', { name: 'Edit' }).click();
+  281 |         await this.page.getByRole('button').first().click();
+  282 |         await this.page.getByRole('button', { name: 'Crop' }).click();
+  283 |     }
+  284 | 
+  285 |     async editBasicInformation(
+  286 |         firstName: string, 
+  287 |         lastName: string, 
+  288 |         middleName: string, 
+  289 |         suffix: string, 
+  290 |         birthdate: string, 
+  291 |         gender: string, 
+  292 |         civilStatus: string, 
+  293 |         nationality: string, 
+  294 |         birthPlace: string, 
+  295 |         province: string, 
+  296 |         municipality: string, 
+  297 |     ) {
+  298 |         await this.page.getByRole('button', { name: 'Edit' }).click();
+  299 |         await this.page.getByRole('button', { name: 'Yes, enable edit' }).click();
+  300 |         await this.page.getByRole('textbox', { name: 'e.g. JUAN' }).click();
+  301 |         await this.page.getByRole('textbox', { name: 'e.g. JUAN' }).fill(firstName);
+  302 |         await this.page.getByRole('textbox', { name: 'e.g. DELA CRUZ' }).click();
+  303 |         await this.page.getByRole('textbox', { name: 'e.g. DELA CRUZ' }).fill(lastName);
+  304 |         await this.page.getByRole('textbox', { name: 'e.g. JR' }).click();
+  305 |         await this.page.getByRole('textbox', { name: 'e.g. JR' }).fill(suffix);
+  306 |         await this.page.getByRole('textbox', { name: 'MM/DD/YYYY' }).click();
+  307 |         await this.page.getByRole('textbox', { name: 'MM/DD/YYYY' }).fill(birthdate);
+  308 |         await this.page.getByRole('button', { name: 'Open' }).first().click();
+  309 |         await this.page.getByRole('option', { name: gender, exact: true }).click();
+  310 |         await this.page.getByRole('button', { name: 'Open' }).nth(1).click();
+  311 |         await this.page.getByRole('option', { name: civilStatus }).click();
+  312 |         await this.page.getByRole('button', { name: 'Open' }).nth(2).click();
+  313 |         await this.page.getByRole('option', { name: nationality }).click();
+  314 |         await this.page.getByRole('button', { name: 'Open' }).nth(3).click();
+  315 |         await this.page.getByRole('option', { name: birthPlace, exact: true }).click();
+  316 |         await this.page.getByRole('button', { name: 'Open' }).nth(4).click();
+  317 |         await this.page.getByRole('option', { name: province }).click();
+  318 |         await this.page.getByRole('button', { name: 'Open' }).nth(5).click();
+  319 |         await this.page.getByRole('option', { name: municipality }).click();
+  320 |     }
+  321 | 
+  322 |     async editOtherInfo(
+  323 |         residenceType: string,
+  324 |         occupation: string,
+  325 |         isPWD: string,
+  326 |         isSeniorCitizen: string,
+  327 |         isVoter: string,
+  328 |         voterStatus: string,
+  329 |         hoaMembership: string
+  330 |     ) {
+  331 |         await this.page.getByRole('button', { name: 'Edit' }).click();
+  332 |         await this.page.getByRole('button', { name: 'Yes, enable edit' }).click();
+  333 |         await this.page.getByRole('button', { name: 'Open' }).first().click();
+> 334 |         await this.page.getByRole('option', { name: residenceType }).click();
+      |                                                                      ^ Error: locator.click: Error: strict mode violation: getByRole('option', { name: 'BARANGAY' }) resolved to 5 elements:
+  335 |         await this.page.getByRole('button', { name: 'Open' }).nth(1).click();
+  336 |         await this.page.getByRole('option', { name: occupation }).click();
+  337 |         await this.page.getByRole('button', { name: 'Open' }).nth(2).click();
+  338 |         await this.page.getByRole('option', { name: isPWD }).click();
+  339 |         await this.page.getByRole('button', { name: 'Open' }).nth(3).click();
+  340 |         await this.page.getByRole('option', { name: isSeniorCitizen }).click();
+  341 |         await this.page.getByRole('button', { name: 'Open' }).nth(4).click();
+  342 |         await this.page.getByRole('option', { name: isVoter }).click();
+  343 |         await this.page.getByRole('button', { name: 'Open' }).nth(5).click();
+  344 |         await this.page.getByRole('option', { name: voterStatus }).click();
+  345 |         await this.page.locator('.MuiGrid-root > .MuiGrid-root.MuiGrid-container > div:nth-child(2) > .MuiFormControl-root.MuiFormControl-fullWidth.css-17qa0m8 > .MuiAutocomplete-root > .MuiFormControl-root > .MuiInputBase-root > .MuiAutocomplete-endAdornment > .MuiButtonBase-root.MuiIconButton-root.MuiIconButton-sizeMedium.MuiAutocomplete-popupIndicator').click();
+  346 |         await this.page.getByRole('option', { name: hoaMembership, exact: true }).click();
+  347 |     }
+  348 | 
+  349 |     async editPhotoSignature() {
+  350 |         await this.page.getByRole('button', { name: 'Edit' }).first().click();
+  351 |         await this.page.getByRole('button', { name: 'Yes, enable edit' }).click();
+  352 |         await this.page.getByRole('button', { name: 'Edit' }).first().click();
+  353 |         await this.page.getByRole('button', { name: 'Use Webcam' }).click();
+  354 |         // await this.page.getByRole('button').first().click();
+  355 |         // await this.page.getByRole('button', { name: 'Submit' }).click();
+  356 |         await this.page.getByRole('button', { name: 'Edit' }).nth(1).click();
+  357 |         await this.page.getByRole('button', { name: 'Use Touchscreen' }).click();
+  358 |         // await this.page.getByRole('button', { name: 'Submit' }).click();
+  359 | }
+  360 | }
+```

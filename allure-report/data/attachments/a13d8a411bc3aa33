@@ -1,0 +1,215 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: citizen_search.spec.ts >> Citizen Search Functionality >> Citizen Search - Cards
+- Location: tests/citizen_search.spec.ts:242:9
+
+# Error details
+
+```
+Error: Card information not found on the page. Tried multiple selectors.
+```
+
+# Test source
+
+```ts
+  105 |         await this.page.getByRole('cell').nth(cellIndex).click();
+  106 |     }
+  107 | 
+  108 |     async openValidIDTab() {
+  109 |         await this.validIDTab.click();
+  110 |     }
+  111 | 
+  112 |     async openPhotoSigTab() {
+  113 |         await this.photoSigTab.click();
+  114 |     }
+  115 | 
+  116 |     async openRelationshipTab() {
+  117 |         await this.relationshipTab.click();
+  118 |     }
+  119 | 
+  120 |     async openAddressTab() {
+  121 |         await this.addressTab.click();
+  122 |     }
+  123 | 
+  124 |     async openProofOfBillingTab() {
+  125 |         await this.proofOfBillingTab.click();
+  126 |     }
+  127 | 
+  128 |     async openContactTab() {
+  129 |         await this.contactTab.click();
+  130 |     }
+  131 | 
+  132 |     async openCardsTab() {
+  133 |         await this.cardsTab.click();
+  134 |     }
+  135 | 
+  136 |     async openOtherInfoTab() {
+  137 |         await this.otherInfoTab.click();
+  138 |     }
+  139 | 
+  140 |     async clickValidIDImage() {
+  141 |         await this.page.getByRole('img').first().click();
+  142 |     }
+  143 | 
+  144 |     async verifyRelationshipContainer() {
+  145 |         await this.page.locator('.MuiGrid-root.MuiGrid-container.MuiGrid-direction-xs-row.MuiGrid-spacing-xs-4').waitFor({
+  146 |             state: 'visible',
+  147 |             timeout: 30000
+  148 |         });
+  149 |     }
+  150 | 
+  151 |     async verifyAddressComboboxes() {
+  152 |         await this.page.getByRole('combobox', { name: 'Select an item...' }).first().waitFor({
+  153 |             state: 'visible',
+  154 |             timeout: 30000
+  155 |         });
+  156 |     }
+  157 | 
+  158 |     async verifyProofOfBillingCombobox() {
+  159 |         await this.page.getByRole('combobox', { name: 'Select an item...' }).waitFor({
+  160 |             state: 'visible',
+  161 |             timeout: 30000
+  162 |         });
+  163 |     }
+  164 | 
+  165 |     async verifyContactFields() {
+  166 |         await this.page.locator('input[name="mobileNos"]').waitFor({
+  167 |             state: 'visible',
+  168 |             timeout: 30000
+  169 |         });
+  170 |     }
+  171 | 
+  172 |     async verifyBasicInformationFields() {
+  173 |         await this.page.getByRole('textbox', { name: 'e.g. JUAN' }).waitFor({
+  174 |             state: 'visible',
+  175 |             timeout: 30000
+  176 |         });
+  177 |     }
+  178 | 
+  179 |     async verifyCardInformation() {
+  180 |         // Try multiple possible selectors
+  181 |         const cardSelectors = [
+  182 |             this.page.getByText(/ARIS Bayambang Card/i),
+  183 |             this.page.getByText(/Card/i),
+  184 |             this.page.locator('[class*="card"]'),
+  185 |             this.page.locator('.MuiCard-root')
+  186 |         ];
+  187 |         
+  188 |         let cardFound = false;
+  189 |         
+  190 |         for (const selector of cardSelectors) {
+  191 |             try {
+  192 |                 await selector.first().waitFor({ 
+  193 |                     state: 'visible', 
+  194 |                     timeout: 8000 
+  195 |                 });
+  196 |                 cardFound = true;
+  197 |                 console.log('✓ Card information found');
+  198 |                 break;
+  199 |             } catch (error) {
+  200 |                 continue;
+  201 |             }
+  202 |         }
+  203 |         
+  204 |         if (!cardFound) {
+> 205 |             throw new Error('Card information not found on the page. Tried multiple selectors.');
+      |                   ^ Error: Card information not found on the page. Tried multiple selectors.
+  206 |         }
+  207 |     }
+  208 | 
+  209 |     async verifyOtherInfoComboboxes() {
+  210 |         await this.page.getByRole('combobox').first().waitFor({
+  211 |             state: 'visible',
+  212 |             timeout: 30000
+  213 |         });
+  214 |     }
+  215 | 
+  216 |     async verifyPhotoSignatureImages() {
+  217 |         await this.page.getByRole('img').first().waitFor({
+  218 |             state: 'visible',
+  219 |             timeout: 30000
+  220 |         });
+  221 |     }
+  222 | 
+  223 |     async enableEdit() {
+  224 |         await this.page.getByRole('button', { name: 'Edit' }).first().click();
+  225 |         await this.page.getByRole('button', { name: 'Yes, enable edit' }).click();
+  226 |     }
+  227 | 
+  228 |     async enableEditForRelationship() {
+  229 |         await this.page.getByRole('button', { name: 'Edit' }).click();
+  230 |         await this.page.getByRole('button', { name: 'Yes, enable edit' }).click();
+  231 |     }
+  232 | 
+  233 |     async editValidID() {
+  234 |         await this.page.getByRole('button', { name: 'Edit' }).nth(1).click();
+  235 |         await this.page.getByRole('button', { name: 'Yes, enable edit' }).click();
+  236 |         await this.page.getByRole('button', { name: 'Edit' }).click();
+  237 |         await this.page.getByRole('button').first().click();
+  238 |         await this.page.getByRole('button', { name: 'Crop' }).click();
+  239 |         await this.saveChangesButton.click();
+  240 |         await this.saveButton.click();
+  241 |         await this.closeButton.click();
+  242 |     }
+  243 | 
+  244 |     async editPhotoSignature() {
+  245 |         await this.page.getByRole('button', { name: 'Edit' }).first().click();
+  246 |         await this.page.getByRole('button', { name: 'Use Webcam' }).click();
+  247 |         await this.page.getByRole('button').first().click();
+  248 |         await this.page.getByRole('button', { name: 'Submit' }).click();
+  249 |         await this.page.getByRole('button', { name: 'Edit' }).nth(1).click();
+  250 |         await this.page.getByRole('button', { name: 'Use Touchscreen' }).click();
+  251 |         await this.page.getByRole('button', { name: 'Use Touchscreen' }).click();
+  252 |     }
+  253 | 
+  254 |     async editRelationship(
+  255 |         firstName1: string,
+  256 |         middleName1: string,
+  257 |         lastName1: string,
+  258 |         firstName2: string,
+  259 |         middleName2: string,
+  260 |         lastName2: string
+  261 |     ) {
+  262 |         await this.page.getByRole('textbox', { name: 'e.g. JUAN', exact: true }).fill(firstName1);
+  263 |         await this.page.locator('input[name="relationship.0.middleName"]').fill(middleName1);
+  264 |         await this.page.locator('input[name="relationship.0.lastName"]').fill(lastName1);
+  265 |         await this.page.getByRole('textbox', { name: 'e.g. JUANA' }).fill(firstName2);
+  266 |         await this.page.locator('input[name="relationship.1.middleName"]').fill(middleName2);
+  267 |         await this.page.locator('input[name="relationship.1.lastName"]').fill(lastName2);
+  268 |     }
+  269 | 
+  270 |     async editAddress(
+  271 |         country: string,
+  272 |         province: string,
+  273 |         municipality: string,
+  274 |         barangay: string
+  275 |     ) {
+  276 |         await this.page.getByRole('button', { name: 'Open' }).first().click();
+  277 |         await this.page.getByRole('option', { name: country }).click();
+  278 |         await this.page.getByRole('button', { name: 'Open' }).nth(1).click();
+  279 |         await this.page.getByRole('option', { name: province }).click();
+  280 |         await this.page.getByRole('button', { name: 'Open' }).nth(3).click();
+  281 |         await this.page.getByRole('option', { name: municipality }).click();
+  282 |         await this.page.getByRole('button', { name: 'Open' }).nth(4).click();
+  283 |         await this.page.getByRole('option', { name: barangay }).click();
+  284 |     }
+  285 | 
+  286 |     async saveChanges() {
+  287 |         await this.saveChangesButton.click();
+  288 |         await this.saveButton.click();
+  289 |         await this.closeButton.click();
+  290 |     }
+  291 | 
+  292 |     async saveRelationshipChanges() {
+  293 |         await this.saveChangesButton.click();
+  294 |         await this.saveButton.click();
+  295 |         await this.closeButton.click();
+  296 |     }
+  297 | }
+```

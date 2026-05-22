@@ -73,17 +73,16 @@ test.describe('Citizen Search Functionality', () => {
         } catch (error) {
             console.log('Could not click home button, navigating directly...');
             try {
-                // Fallback: go directly to dashboard
+
                 await page.goto('https://sit-bayambang.aris.ph');
                 await page.waitForLoadState('networkidle');
                 console.log('Successfully navigated to dashboard');
             } catch (navError) {
                 console.log('Failed to navigate to dashboard:', navError);
-                // Don't throw - let the test continue and fail if needed
+
             }
         }
         
-        // Small delay to ensure page is stable
         await page.waitForTimeout(1000);
     });
 
@@ -115,23 +114,21 @@ test.describe('Citizen Search Functionality', () => {
             }
         }
         
-        // Small delay to ensure page is stable before next test
         await page.waitForTimeout(1000);
     });
 
-     // Helper function to return to dashboard
     async function returnToDashboard() {
         const citizenSearchPage = new CitizenSearchPage(page);
         
         try { 
-            // Try to click home button first
+
             await citizenSearchPage.clickHome();
             await page.waitForLoadState('networkidle');
             console.log('✓ Clicked home button');
         } catch (error) {
             console.log('Could not click home button, trying navigation...');
             try {
-                // Fallback: go directly to dashboard
+
                 await page.goto('https://sit-bayambang.aris.ph');
                 await page.waitForLoadState('networkidle');
                 console.log('✓ Navigated to dashboard');
@@ -148,6 +145,8 @@ test.describe('Citizen Search Functionality', () => {
 
     test('Citizen Search - Valid ID', async () => {
         const citizenSearchPage = new CitizenSearchPage(page);
+
+    
 
         await citizenSearchPage.navigateToCitizens();
         await citizenSearchPage.applyFilterByLastName('DURANT');
@@ -291,13 +290,12 @@ test.describe('Citizen Search Functionality', () => {
     test.afterAll(async () => {
         console.log('Running final cleanup after all tests...');
         
-        // Give a moment for any pending operations
         await new Promise(resolve => setTimeout(resolve, 2000));
         
         try {
             if (page && !page.isClosed()) {
                 try {
-                    // Try to logout properly
+
                     const logoutButton = page.getByRole('button', { name: /log out/i });
                     await logoutButton.waitFor({ state: 'visible', timeout: 5000 });
                     await logoutButton.click();

@@ -1,0 +1,316 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: citizen_update.spec.ts >> Citizen Search Functionality >> Citizen Update - Edit Other Information
+- Location: tests/citizen_update.spec.ts:268:9
+
+# Error details
+
+```
+Error: locator.click: Error: strict mode violation: getByRole('option', { name: 'GLORIA' }) resolved to 4 elements:
+    1) <p tabindex="-1" role="option" id="«r134»-option-11" aria-disabled="false" aria-selected="false" data-option-index="11" class="MuiTypography-root MuiTypography-body1 MuiAutocomplete-option css-5hmv4m">GLORIA</p> aka getByRole('option', { name: 'GLORIA', exact: true })
+    2) <p tabindex="-1" role="option" id="«r134»-option-12" aria-disabled="false" aria-selected="false" data-option-index="12" class="MuiTypography-root MuiTypography-body1 MuiAutocomplete-option css-5hmv4m">GLORIAERWER</p> aka getByRole('option', { name: 'GLORIAERWER' })
+    3) <p tabindex="-1" role="option" aria-selected="true" id="«r134»-option-13" aria-disabled="false" data-option-index="13" class="MuiTypography-root MuiTypography-body1 MuiAutocomplete-option css-5hmv4m Mui-focused">GLORIAS</p> aka getByRole('option', { name: 'GLORIAS', exact: true })
+    4) <p tabindex="-1" role="option" id="«r134»-option-14" aria-disabled="false" aria-selected="false" data-option-index="14" class="MuiTypography-root MuiTypography-body1 MuiAutocomplete-option css-5hmv4m">GLORIASDF</p> aka getByRole('option', { name: 'GLORIASDF' })
+
+Call log:
+  - waiting for getByRole('option', { name: 'GLORIA' })
+
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e1]:
+  - generic [ref=e2]:
+    - region "Notifications Alt+T"
+    - generic [ref=e3]:
+      - list [ref=e7]:
+        - button "Dashboard" [ref=e8] [cursor=pointer]:
+          - img [ref=e9]
+        - button "Citizens" [ref=e11] [cursor=pointer]:
+          - img [ref=e12]
+        - button "Events" [ref=e15] [cursor=pointer]:
+          - img [ref=e16]
+        - button "Card" [ref=e18] [cursor=pointer]:
+          - img [ref=e19]
+        - button "System Hierarchy" [ref=e21] [cursor=pointer]:
+          - img [ref=e22]
+        - generic [ref=e25]:
+          - button "Settings" [ref=e26] [cursor=pointer]:
+            - img [ref=e27]
+          - button "Log out (Ad Allcard)" [active] [ref=e29] [cursor=pointer]:
+            - img [ref=e30]
+      - generic [ref=e34]:
+        - generic [ref=e38]:
+          - img [ref=e39]
+          - generic [ref=e41]:
+            - paragraph [ref=e42]: Dashboard
+            - heading "Visualizing Population Data in Real Time" [level=6] [ref=e43]
+        - generic [ref=e44]:
+          - generic [ref=e48]:
+            - generic [ref=e51]:
+              - generic [ref=e52]: Province
+              - generic [ref=e57]:
+                - combobox "Select an item..." [ref=e58]
+                - button "Open" [ref=e60] [cursor=pointer]:
+                  - img [ref=e61]
+                - group
+            - generic [ref=e65]:
+              - generic [ref=e66]: City
+              - generic [ref=e71]:
+                - combobox "Select an item..." [ref=e72]
+                - button "Open" [ref=e74] [cursor=pointer]:
+                  - img [ref=e75]
+                - group
+            - generic [ref=e79]:
+              - generic [ref=e80]: Barangay
+              - generic [ref=e85]:
+                - combobox "Select an item..." [ref=e86]
+                - button "Open" [ref=e88] [cursor=pointer]:
+                  - img [ref=e89]
+                - group
+            - 'heading "Population: 20" [level=2] [ref=e93]':
+              - img [ref=e94]
+              - text: "Population:"
+              - region "20" [ref=e96]:
+                - generic [ref=e286]:
+                  - generic [ref=e98]: "0"
+                  - generic [ref=e99]: "1"
+                  - generic [ref=e100]: "2"
+                  - generic [ref=e101]: "3"
+                  - generic [ref=e102]: "4"
+                  - generic [ref=e103]: "5"
+                  - generic [ref=e104]: "6"
+                  - generic [ref=e105]: "7"
+                  - generic [ref=e106]: "8"
+                  - generic [ref=e107]: "9"
+                - generic [ref=e287]:
+                  - generic [ref=e109]: "0"
+                  - generic [ref=e110]: "1"
+                  - generic [ref=e111]: "2"
+                  - generic [ref=e112]: "3"
+                  - generic [ref=e113]: "4"
+                  - generic [ref=e114]: "5"
+                  - generic [ref=e115]: "6"
+                  - generic [ref=e116]: "7"
+                  - generic [ref=e117]: "8"
+                  - generic [ref=e118]: "9"
+          - generic [ref=e119]:
+            - generic [ref=e122]:
+              - heading "Gender and Age Statistics" [level=6] [ref=e124]:
+                - img [ref=e125]
+                - text: Gender and Age Statistics
+              - generic [ref=e129]:
+                - img [ref=e130]:
+                  - generic [ref=e135]:
+                    - generic [ref=e137]: 41-60
+                    - generic [ref=e139]: 19-40
+                    - generic [ref=e141]: 60+
+                    - generic [ref=e143]: 0-18
+                  - generic [ref=e145]:
+                    - generic [ref=e147]: "0"
+                    - generic [ref=e149]: "3"
+                    - generic [ref=e151]: "6"
+                    - generic [ref=e153]: "9"
+                    - generic [ref=e155]: "12"
+                - list [ref=e177]:
+                  - listitem [ref=e178]:
+                    - img [ref=e179]
+                    - text: Male
+                  - listitem [ref=e181]:
+                    - img [ref=e182]
+                    - text: Female
+                  - listitem [ref=e184]:
+                    - img [ref=e185]
+                    - text: Other
+            - generic [ref=e189]:
+              - heading "Civil Status Statistics" [level=6] [ref=e191]:
+                - img [ref=e192]
+                - text: Civil Status Statistics
+              - generic [ref=e196]:
+                - img [ref=e197]:
+                  - generic [ref=e198]:
+                    - img [ref=e200]
+                    - img [ref=e202]
+                    - img [ref=e204]
+                - list [ref=e206]:
+                  - listitem [ref=e207]:
+                    - img [ref=e208]
+                    - text: Widowed
+                  - listitem [ref=e210]:
+                    - img [ref=e211]
+                    - text: Married
+                  - listitem [ref=e213]:
+                    - img [ref=e214]
+                    - text: Single
+            - heading "Employment Rate" [level=6] [ref=e220]:
+              - img [ref=e221]
+              - text: Employment Rate
+            - generic [ref=e228]:
+              - heading "Top 20 Most Populated Barangays" [level=6] [ref=e229]:
+                - img [ref=e230]
+                - text: Top 20 Most Populated Barangays
+              - button "Show All" [ref=e232] [cursor=pointer]
+            - generic [ref=e238]:
+              - heading "Top 20 Barangays with Most Number of Senior Citizens" [level=6] [ref=e239]:
+                - img [ref=e240]
+                - text: Top 20 Barangays with Most Number of Senior Citizens
+              - button "Show All" [ref=e242] [cursor=pointer]
+            - generic [ref=e248]:
+              - heading "Top 20 Barangays With No Photo" [level=6] [ref=e249]:
+                - img [ref=e250]
+                - text: Top 20 Barangays With No Photo
+              - button "Show All" [ref=e252] [cursor=pointer]
+            - generic [ref=e258]:
+              - heading "Top 20 Barangays With No Signature" [level=6] [ref=e259]:
+                - img [ref=e260]
+                - text: Top 20 Barangays With No Signature
+              - button "Show All" [ref=e262] [cursor=pointer]
+            - generic [ref=e268]:
+              - heading "Top 20 Barangays with Most PWD Citizens" [level=6] [ref=e269]:
+                - img [ref=e270]
+                - text: Top 20 Barangays with Most PWD Citizens
+              - button "Show All" [ref=e272] [cursor=pointer]
+            - generic [ref=e278]:
+              - heading "Top 20 Barangays with Most Registered Voters" [level=6] [ref=e279]:
+                - img [ref=e280]
+                - text: Top 20 Barangays with Most Registered Voters
+              - button "Show All" [ref=e282] [cursor=pointer]
+  - generic [ref=e285]: "12"
+  - tooltip "Log out (Ad Allcard)" [ref=e288]:
+    - generic [ref=e289]: Log out (Ad Allcard)
+```
+
+# Test source
+
+```ts
+  225 |         await this.saveButton.click();
+  226 |         await this.closeButton.click();
+  227 |     }
+  228 | 
+  229 |     async enableEdit() {
+  230 |         await this.page.getByRole('button', { name: 'Edit' }).first().click();
+  231 |         await this.page.getByRole('button', { name: 'Yes, enable edit' }).click();
+  232 |     }
+  233 | 
+  234 |     async editValidID() {
+  235 |         await this.page.getByRole('button', { name: 'Edit' }).nth(1).click();
+  236 |         await this.page.getByRole('button', { name: 'Yes, enable edit' }).click();
+  237 |         await this.page.getByRole('button', { name: 'Edit' }).click();
+  238 |         await this.page.getByRole('button').first().click();
+  239 |         await this.page.getByRole('button', { name: 'Crop' }).click();
+  240 |     }
+  241 | 
+  242 |     async editRelationship(firstName1: string, middleName1: string, lastName1: string, firstName2: string, middleName2: string, lastName2: string) {
+  243 |         await this.page.getByRole('textbox', { name: 'e.g. JUAN', exact: true }).click();
+  244 |         await this.page.getByRole('textbox', { name: 'e.g. JUAN', exact: true }).fill(firstName1);
+  245 |         await this.page.locator('input[name="relationship.0.middleName"]').click();
+  246 |         await this.page.locator('input[name="relationship.0.middleName"]').fill(middleName1);
+  247 |         await this.page.locator('input[name="relationship.0.lastName"]').click();
+  248 |         await this.page.locator('input[name="relationship.0.lastName"]').fill(lastName1);
+  249 |         await this.page.getByRole('textbox', { name: 'e.g. JUANA' }).click();
+  250 |         await this.page.getByRole('textbox', { name: 'e.g. JUANA' }).fill(firstName2);
+  251 |         await this.page.locator('input[name="relationship.1.middleName"]').click();
+  252 |         await this.page.locator('input[name="relationship.1.middleName"]').fill(middleName2);
+  253 |         await this.page.locator('input[name="relationship.1.lastName"]').click();
+  254 |         await this.page.locator('input[name="relationship.1.lastName"]').fill(lastName2);
+  255 |     }
+  256 | 
+  257 |     async editAddress(
+  258 |         country: string,
+  259 |         province: string,
+  260 |         municipality: string,
+  261 |         barangay: string
+  262 |     ) {
+  263 |         await this.page.getByRole('button', { name: 'Open' }).first().click();
+  264 |         await this.page.getByRole('option', { name: country }).click();
+  265 |         await this.page.getByRole('button', { name: 'Open' }).nth(1).click();
+  266 |         await this.page.getByRole('option', { name: province }).click();
+  267 |         await this.page.getByRole('button', { name: 'Open' }).nth(3).click();
+  268 |         await this.page.getByRole('option', { name: municipality }).click();
+  269 |         await this.page.getByRole('button', { name: 'Open' }).nth(4).click();
+  270 |         await this.page.getByRole('option', { name: barangay }).click();
+  271 |     }
+  272 | 
+  273 |     async editProofOfBilling() {
+  274 |         await this.page.getByRole('button', { name: 'Edit' }).nth(1).click();
+  275 |         await this.page.getByRole('button', { name: 'Yes, enable edit' }).click();
+  276 |         await this.page.getByRole('button', { name: 'Edit' }).click();
+  277 |         await this.page.getByRole('button').first().click();
+  278 |         await this.page.getByRole('button', { name: 'Crop' }).click();
+  279 |     }
+  280 | 
+  281 |     async editBasicInformation(
+  282 |         firstName: string, 
+  283 |         lastName: string, 
+  284 |         suffix: string, 
+  285 |         birthdate: string, 
+  286 |         gender: string, 
+  287 |         civilStatus: string, 
+  288 |         nationality: string, 
+  289 |         birthPlace: string, 
+  290 |         province: string, 
+  291 |         municipality: string, 
+  292 |     ) {
+  293 |         await this.page.getByRole('textbox', { name: 'e.g. JUAN' }).click();
+  294 |         await this.page.getByRole('textbox', { name: 'e.g. JUAN' }).fill(firstName);
+  295 |         await this.page.getByRole('textbox', { name: 'e.g. DELA CRUZ' }).click();
+  296 |         await this.page.getByRole('textbox', { name: 'e.g. DELA CRUZ' }).fill(lastName);
+  297 |         await this.page.getByRole('textbox', { name: 'e.g. JR' }).click();
+  298 |         await this.page.getByRole('textbox', { name: 'e.g. JR' }).fill(suffix);
+  299 |         await this.page.getByRole('textbox', { name: 'MM/DD/YYYY' }).click();
+  300 |         await this.page.getByRole('textbox', { name: 'MM/DD/YYYY' }).fill(birthdate);
+  301 |         await this.page.getByRole('button', { name: 'Open' }).first().click();
+  302 |         await this.page.getByRole('option', { name: gender, exact: true }).click();
+  303 |         await this.page.getByRole('button', { name: 'Open' }).nth(1).click();
+  304 |         await this.page.getByRole('option', { name: civilStatus }).click();
+  305 |         await this.page.getByRole('button', { name: 'Open' }).nth(2).click();
+  306 |         await this.page.getByRole('option', { name: nationality }).click();
+  307 |         await this.page.getByRole('button', { name: 'Open' }).nth(3).click();
+  308 |         await this.page.getByRole('option', { name: birthPlace, exact: true }).click();
+  309 |         await this.page.getByRole('button', { name: 'Open' }).nth(4).click();
+  310 |         await this.page.getByRole('option', { name: province }).click();
+  311 |         await this.page.getByRole('button', { name: 'Open' }).nth(5).click();
+  312 |         await this.page.getByRole('option', { name: municipality }).click();
+  313 |     }
+  314 | 
+  315 |     async editOtherInfo(
+  316 |         barangaySector: string,
+  317 |         employmentStatus: string,
+  318 |         registeredVoter: string,
+  319 |         isPWD: string,
+  320 |         isDependent: string,
+  321 |         qFamily: string,
+  322 |         hoaMembership: string
+  323 |     ) {
+  324 |         await this.page.getByRole('button', { name: 'Open' }).first().click();
+> 325 |         await this.page.getByRole('option', { name: barangaySector }).click();
+      |                                                                       ^ Error: locator.click: Error: strict mode violation: getByRole('option', { name: 'GLORIA' }) resolved to 4 elements:
+  326 |         await this.page.getByRole('button', { name: 'Open' }).nth(1).click();
+  327 |         await this.page.getByRole('option', { name: employmentStatus }).click();
+  328 |         await this.page.getByRole('button', { name: 'Open' }).nth(2).click();
+  329 |         await this.page.getByRole('option', { name: registeredVoter }).click();
+  330 |         await this.page.getByRole('button', { name: 'Open' }).nth(3).click();
+  331 |         await this.page.getByRole('option', { name: isPWD }).click();
+  332 |         await this.page.getByRole('button', { name: 'Open' }).nth(4).click();
+  333 |         await this.page.getByRole('option', { name: isDependent }).click();
+  334 |         await this.page.getByRole('button', { name: 'Open' }).nth(5).click();
+  335 |         await this.page.getByRole('option', { name: qFamily }).click();
+  336 |         await this.page.locator('.MuiGrid-root > .MuiGrid-root.MuiGrid-container > div:nth-child(2) > .MuiFormControl-root.MuiFormControl-fullWidth.css-17qa0m8 > .MuiAutocomplete-root > .MuiFormControl-root > .MuiInputBase-root > .MuiAutocomplete-endAdornment > .MuiButtonBase-root.MuiIconButton-root.MuiIconButton-sizeMedium.MuiAutocomplete-popupIndicator').click();
+  337 |         await this.page.getByRole('option', { name: hoaMembership, exact: true }).click();
+  338 |     }
+  339 | 
+  340 |     async editPhotoSignature() {
+  341 |         await this.page.getByRole('button', { name: 'Edit' }).first().click();
+  342 |         await this.page.getByRole('button', { name: 'Use Webcam' }).click();
+  343 |         await this.page.getByRole('button', { name: 'Edit' }).nth(1).click();
+  344 |         await this.page.getByRole('button', { name: 'Use Touchscreen' }).click();
+  345 | }
+  346 | }
+```

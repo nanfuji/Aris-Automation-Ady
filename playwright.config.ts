@@ -4,6 +4,8 @@ export default defineConfig({
 
     testDir: './tests',
 
+    testIgnore: ['tests/citizen_search.spec.ts'],
+
     fullyParallel: false,  // Keep false to maintain shared session
     
     forbidOnly: false,

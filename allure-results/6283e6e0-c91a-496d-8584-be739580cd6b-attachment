@@ -1,0 +1,211 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: citizen_update.spec.ts >> Citizen Search Functionality >> Citizen Update - Edit Relationship
+- Location: tests/citizen_update.spec.ts:164:9
+
+# Error details
+
+```
+Error: locator.click: Target page, context or browser has been closed
+Call log:
+  - waiting for getByRole('button', { name: 'Save Changes' })
+    - locator resolved to <button disabled tabindex="-1" type="submit" class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary Mui-disabled MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary css-ff8hmg">Save Changes</button>
+  - attempting click action
+    2 × waiting for element to be visible, enabled and stable
+      - element is not enabled
+    - retrying click action
+    - waiting 20ms
+    2 × waiting for element to be visible, enabled and stable
+      - element is not enabled
+    - retrying click action
+      - waiting 100ms
+    57 × waiting for element to be visible, enabled and stable
+       - element is not enabled
+     - retrying click action
+       - waiting 500ms
+    - waiting for element to be visible, enabled and stable
+  - element was detached from the DOM, retrying
+
+```
+
+# Test source
+
+```ts
+  143 | 
+  144 |     async verifyRelationshipContainer() {
+  145 |         await this.page.locator('.MuiGrid-root.MuiGrid-container.MuiGrid-direction-xs-row.MuiGrid-spacing-xs-4').waitFor({
+  146 |             state: 'visible',
+  147 |             timeout: 30000
+  148 |         });
+  149 |     }
+  150 | 
+  151 |     async verifyAddressComboboxes() {
+  152 |         await this.page.getByRole('combobox', { name: 'Select an item...' }).first().waitFor({
+  153 |             state: 'visible',
+  154 |             timeout: 30000
+  155 |         });
+  156 |     }
+  157 | 
+  158 |     async verifyProofOfBillingCombobox() {
+  159 |         await this.page.getByRole('combobox', { name: 'Select an item...' }).waitFor({
+  160 |             state: 'visible',
+  161 |             timeout: 30000
+  162 |         });
+  163 |     }
+  164 | 
+  165 |     async verifyContactFields() {
+  166 |         await this.page.locator('input[name="mobileNos"]').waitFor({
+  167 |             state: 'visible',
+  168 |             timeout: 30000
+  169 |         });
+  170 |     }
+  171 | 
+  172 |     async verifyBasicInformationFields() {
+  173 |         await this.page.getByRole('textbox', { name: 'e.g. JUAN' }).waitFor({
+  174 |             state: 'visible',
+  175 |             timeout: 30000
+  176 |         });
+  177 |     }
+  178 | 
+  179 |     async verifyCardInformation() {
+  180 |         // Try multiple possible selectors
+  181 |         const cardSelectors = [
+  182 |             this.page.getByText(/ARIS Bayambang Card/i),
+  183 |             this.page.getByText(/Card/i),
+  184 |             this.page.locator('[class*="card"]'),
+  185 |             this.page.locator('.MuiCard-root')
+  186 |         ];
+  187 |         
+  188 |         let cardFound = false;
+  189 |         
+  190 |         for (const selector of cardSelectors) {
+  191 |             try {
+  192 |                 await selector.first().waitFor({ 
+  193 |                     state: 'visible', 
+  194 |                     timeout: 8000 
+  195 |                 });
+  196 |                 cardFound = true;
+  197 |                 console.log('✓ Card information found');
+  198 |                 break;
+  199 |             } catch (error) {
+  200 |                 continue;
+  201 |             }
+  202 |         }
+  203 |         
+  204 |         if (!cardFound) {
+  205 |             throw new Error('Card information not found on the page. Tried multiple selectors.');
+  206 |         }
+  207 |     }
+  208 | 
+  209 |     async verifyOtherInfoComboboxes() {
+  210 |         await this.page.getByRole('combobox').first().waitFor({
+  211 |             state: 'visible',
+  212 |             timeout: 30000
+  213 |         });
+  214 |     }
+  215 | 
+  216 |     async verifyPhotoSignatureImages() {
+  217 |         await this.page.getByRole('img').first().waitFor({
+  218 |             state: 'visible',
+  219 |             timeout: 30000
+  220 |         });
+  221 |     }
+  222 | 
+  223 |     async enableEdit() {
+  224 |         await this.page.getByRole('button', { name: 'Edit' }).first().click();
+  225 |         await this.page.getByRole('button', { name: 'Yes, enable edit' }).click();
+  226 |     }
+  227 | 
+  228 |     async editRelationship(firstName1: string, middleName1: string, lastName1: string, firstName2: string, middleName2: string, lastName2: string) {
+  229 |         await this.page.getByRole('button', { name: 'Edit' }).click();
+  230 |         await this.page.getByRole('button', { name: 'Yes, enable edit' }).click();
+  231 |         await this.page.getByRole('textbox', { name: 'e.g. JUAN', exact: true }).click();
+  232 |         await this.page.getByRole('textbox', { name: 'e.g. JUAN', exact: true }).fill(firstName1);
+  233 |         await this.page.locator('input[name="relationship.0.middleName"]').click();
+  234 |         await this.page.locator('input[name="relationship.0.middleName"]').fill(middleName1);
+  235 |         await this.page.locator('input[name="relationship.0.lastName"]').click();
+  236 |         await this.page.locator('input[name="relationship.0.lastName"]').fill(lastName1);
+  237 |         await this.page.getByRole('textbox', { name: 'e.g. JUANA' }).click();
+  238 |         await this.page.getByRole('textbox', { name: 'e.g. JUANA' }).fill(firstName2);
+  239 |         await this.page.locator('input[name="relationship.1.middleName"]').click();
+  240 |         await this.page.locator('input[name="relationship.1.middleName"]').fill(middleName2);
+  241 |         await this.page.locator('input[name="relationship.1.lastName"]').click();
+  242 |         await this.page.locator('input[name="relationship.1.lastName"]').fill(lastName2);
+> 243 |         await this.saveChangesButton.click();
+      |                                      ^ Error: locator.click: Target page, context or browser has been closed
+  244 |         await this.saveButton.click();
+  245 |         await this.closeButton.click();
+  246 |     }
+  247 | 
+  248 |     async editValidID() {
+  249 |         await this.page.getByRole('button', { name: 'Edit' }).nth(1).click();
+  250 |         await this.page.getByRole('button', { name: 'Yes, enable edit' }).click();
+  251 |         await this.page.getByRole('button', { name: 'Edit' }).click();
+  252 |         await this.page.getByRole('button').first().click();
+  253 |         await this.page.getByRole('button', { name: 'Crop' }).click();
+  254 |         await this.saveChangesButton.click();
+  255 |         await this.saveButton.click();
+  256 |         await this.closeButton.click();
+  257 |     }
+  258 | 
+  259 |     async editPhotoSignature() {
+  260 |         await this.page.getByRole('button', { name: 'Edit' }).first().click();
+  261 |         await this.page.getByRole('button', { name: 'Use Webcam' }).click();
+  262 |         await this.page.getByRole('button').first().click();
+  263 |         await this.page.getByRole('button', { name: 'Submit' }).click();
+  264 |         await this.page.getByRole('button', { name: 'Edit' }).nth(1).click();
+  265 |         await this.page.getByRole('button', { name: 'Use Touchscreen' }).click();
+  266 |         await this.page.getByRole('button', { name: 'Use Touchscreen' }).click();
+  267 |     }
+  268 | 
+  269 |     // async editRelationship(
+  270 |     //     firstName1: string,
+  271 |     //     middleName1: string,
+  272 |     //     lastName1: string,
+  273 |     //     firstName2: string,
+  274 |     //     middleName2: string,
+  275 |     //     lastName2: string
+  276 |     // ) {
+  277 |     //     await this.page.getByRole('textbox', { name: 'e.g. JUAN', exact: true }).fill(firstName1);
+  278 |     //     await this.page.locator('input[name="relationship.0.middleName"]').fill(middleName1);
+  279 |     //     await this.page.locator('input[name="relationship.0.lastName"]').fill(lastName1);
+  280 |     //     await this.page.getByRole('textbox', { name: 'e.g. JUANA' }).fill(firstName2);
+  281 |     //     await this.page.locator('input[name="relationship.1.middleName"]').fill(middleName2);
+  282 |     //     await this.page.locator('input[name="relationship.1.lastName"]').fill(lastName2);
+  283 |     // }
+  284 | 
+  285 |     async editAddress(
+  286 |         country: string,
+  287 |         province: string,
+  288 |         municipality: string,
+  289 |         barangay: string
+  290 |     ) {
+  291 |         await this.page.getByRole('button', { name: 'Open' }).first().click();
+  292 |         await this.page.getByRole('option', { name: country }).click();
+  293 |         await this.page.getByRole('button', { name: 'Open' }).nth(1).click();
+  294 |         await this.page.getByRole('option', { name: province }).click();
+  295 |         await this.page.getByRole('button', { name: 'Open' }).nth(3).click();
+  296 |         await this.page.getByRole('option', { name: municipality }).click();
+  297 |         await this.page.getByRole('button', { name: 'Open' }).nth(4).click();
+  298 |         await this.page.getByRole('option', { name: barangay }).click();
+  299 |     }
+  300 | 
+  301 |     async saveChanges() {
+  302 |         await this.saveChangesButton.click();
+  303 |         await this.saveButton.click();
+  304 |         await this.closeButton.click();
+  305 |     }
+  306 | 
+  307 |     async saveRelationshipChanges() {
+  308 |         await this.saveChangesButton.click();
+  309 |         await this.saveButton.click();
+  310 |         await this.closeButton.click();
+  311 |     }
+  312 | }
+```
