@@ -8,27 +8,11 @@ import {
 import { LoginPage } from '../pages/login.page';
 import { CitizenSearchPage } from '../pages/citizen_search.page';
 
-// ======================================================
-// CONFIG
-// ======================================================
-
-// Use serial mode to share session across all tests
-// test.describe.configure({ mode: 'serial' });
-// test.setTimeout(300000);
-
-// ======================================================
-// SHARED SESSION
-// ======================================================
-
 let context: BrowserContext;
 let page: Page;
 let loginCompleted = false;
 
-// ======================================================
-// TEST SUITE
-// ======================================================
-
-test.describe('Citizen Search Functionality', () => {
+// test.describe('Citizen Search Functionality', () => {
 
     // ======================================================
     // LOGIN ONCE
@@ -87,7 +71,7 @@ test.describe('Citizen Search Functionality', () => {
     });
 
     // ======================================================
-    // AFTER EACH TEST - Always return to dashboard, even after failures
+    // AFTER EACH TEST - Always return to dashboard, even after failure
     // ======================================================
 
     test.afterEach(async () => {
@@ -121,23 +105,22 @@ test.describe('Citizen Search Functionality', () => {
         const citizenSearchPage = new CitizenSearchPage(page);
         
         try { 
-
             await citizenSearchPage.clickHome();
             await page.waitForLoadState('networkidle');
-            console.log('✓ Clicked home button');
+            console.log('Clicked home button');
         } catch (error) {
             console.log('Could not click home button, trying navigation...');
             try {
-
                 await page.goto('https://sit-bayambang.aris.ph');
                 await page.waitForLoadState('networkidle');
-                console.log('✓ Navigated to dashboard');
+                console.log('Navigated to dashboard');
             } catch (navError) {
                 console.log('Failed to navigate to dashboard');
                 throw navError;
             }
         }
     }
+// });
 
     // ======================================================
     // TEST 1 - Valid ID
@@ -145,8 +128,6 @@ test.describe('Citizen Search Functionality', () => {
 
     test('Citizen Search - Valid ID', async () => {
         const citizenSearchPage = new CitizenSearchPage(page);
-
-    
 
         await citizenSearchPage.navigateToCitizens();
         await citizenSearchPage.applyFilterByLastName('DURANT');
@@ -318,4 +299,3 @@ test.describe('Citizen Search Functionality', () => {
             }
         }
     });
-});

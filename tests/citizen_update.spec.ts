@@ -12,7 +12,7 @@ let context: BrowserContext;
 let page: Page;
 let loginCompleted = false;
 
-test.describe('Citizen Search Functionality', () => {
+// test.describe('Citizen Search Functionality', () => {
 
     // ======================================================
     // LOGIN ONCE
@@ -120,6 +120,7 @@ test.describe('Citizen Search Functionality', () => {
             }
         }
     }
+// });
 
     // ======================================================
     // TEST 1 - Valid ID
@@ -189,9 +190,10 @@ test.describe('Citizen Search Functionality', () => {
         await citizenSearchPage.openCitizenRecord('DURANT');
         await citizenSearchPage.openProofOfBillingTab();
         await expect(citizenSearchPage.proofOfBillingTab).toBeVisible();
-        page.pause();
         await citizenSearchPage.editProofOfBilling();
+        page.pause();
         await citizenSearchPage.saveChanges();
+    
     });
 
     // // ======================================================
@@ -314,5 +316,4 @@ test.describe('Citizen Search Functionality', () => {
                 console.log('Error closing context:', error);
             }
         }
-    });
 });

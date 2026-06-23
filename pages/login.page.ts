@@ -77,7 +77,6 @@ export class LoginPage {
 
             // Extract OTP
             const subjectText = await latestMail.textContent() || '';
-
             const otp = subjectText.match(/\d{5}/)?.[0] || '';
 
             console.log('OTP FOUND:', otp);

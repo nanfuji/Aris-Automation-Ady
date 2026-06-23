@@ -25,9 +25,7 @@
         "id": "chromium",
         "name": "chromium",
         "testDir": "/Users/adnan/Documents/Aris Automantion - Ady/tests",
-        "testIgnore": [
-          "tests/citizen_search.spec.ts"
-        ],
+        "testIgnore": [],
         "testMatch": [
           "**/*.@(spec|test).?(c|m)[jt]s?(x)"
         ],
@@ -71,453 +69,869 @@
   },
   "suites": [
     {
+      "title": "citizen_search.spec.ts",
+      "file": "citizen_search.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "Citizen Search - Valid ID",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 300000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 13133,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "Starting browser and logging in...\n"
+                    },
+                    {
+                      "text": "OTP FOUND: 09699\n"
+                    },
+                    {
+                      "text": "Login completed successfully\n"
+                    },
+                    {
+                      "text": "Resetting to dashboard before test...\n"
+                    },
+                    {
+                      "text": "Successfully returned to dashboard\n"
+                    },
+                    {
+                      "text": "✓ Search result verified: Found \"DURANT\"\n"
+                    },
+                    {
+                      "text": "After test cleanup - returning to dashboard...\n"
+                    },
+                    {
+                      "text": "Clicked home button\n"
+                    },
+                    {
+                      "text": "Successfully returned to dashboard after test\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-06-23T08:56:36.047Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d1fbc5d45414b2c5deeb-54dacd14ff39f9b96780",
+          "file": "citizen_search.spec.ts",
+          "line": 129,
+          "column": 9
+        },
+        {
+          "title": "Citizen Search - Relationship",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 300000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6838,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "Resetting to dashboard before test...\n"
+                    },
+                    {
+                      "text": "Successfully returned to dashboard\n"
+                    },
+                    {
+                      "text": "✓ Search result verified: Found \"DURANT\"\n"
+                    },
+                    {
+                      "text": "After test cleanup - returning to dashboard...\n"
+                    },
+                    {
+                      "text": "Clicked home button\n"
+                    },
+                    {
+                      "text": "Successfully returned to dashboard after test\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-06-23T08:57:16.954Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d1fbc5d45414b2c5deeb-dede9d5371e4b2045055",
+          "file": "citizen_search.spec.ts",
+          "line": 145,
+          "column": 9
+        },
+        {
+          "title": "Citizen Search - Address Tab",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 300000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6844,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "Resetting to dashboard before test...\n"
+                    },
+                    {
+                      "text": "Successfully returned to dashboard\n"
+                    },
+                    {
+                      "text": "✓ Search result verified: Found \"DURANT\"\n"
+                    },
+                    {
+                      "text": "After test cleanup - returning to dashboard...\n"
+                    },
+                    {
+                      "text": "Clicked home button\n"
+                    },
+                    {
+                      "text": "Successfully returned to dashboard after test\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-06-23T08:57:23.810Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d1fbc5d45414b2c5deeb-1a0301cf74f1641059be",
+          "file": "citizen_search.spec.ts",
+          "line": 161,
+          "column": 9
+        },
+        {
+          "title": "Citizen Search - Proof of Billing",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 300000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 7454,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "Resetting to dashboard before test...\n"
+                    },
+                    {
+                      "text": "Successfully returned to dashboard\n"
+                    },
+                    {
+                      "text": "✓ Search result verified: Found \"DURANT\"\n"
+                    },
+                    {
+                      "text": "After test cleanup - returning to dashboard...\n"
+                    },
+                    {
+                      "text": "Clicked home button\n"
+                    },
+                    {
+                      "text": "Successfully returned to dashboard after test\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-06-23T08:57:30.667Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d1fbc5d45414b2c5deeb-c3c27a2ff249595e4aae",
+          "file": "citizen_search.spec.ts",
+          "line": 177,
+          "column": 9
+        },
+        {
+          "title": "Citizen Search - Contact",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 300000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6806,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "Resetting to dashboard before test...\n"
+                    },
+                    {
+                      "text": "Successfully returned to dashboard\n"
+                    },
+                    {
+                      "text": "✓ Search result verified: Found \"DURANT\"\n"
+                    },
+                    {
+                      "text": "After test cleanup - returning to dashboard...\n"
+                    },
+                    {
+                      "text": "Clicked home button\n"
+                    },
+                    {
+                      "text": "Successfully returned to dashboard after test\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-06-23T08:57:38.138Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d1fbc5d45414b2c5deeb-277d35862c6eea670cdb",
+          "file": "citizen_search.spec.ts",
+          "line": 193,
+          "column": 9
+        },
+        {
+          "title": "Citizen Search - Basic Information",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 300000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6557,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "Resetting to dashboard before test...\n"
+                    },
+                    {
+                      "text": "Successfully returned to dashboard\n"
+                    },
+                    {
+                      "text": "✓ Search result verified: Found \"DURANT\"\n"
+                    },
+                    {
+                      "text": "After test cleanup - returning to dashboard...\n"
+                    },
+                    {
+                      "text": "Clicked home button\n"
+                    },
+                    {
+                      "text": "Successfully returned to dashboard after test\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-06-23T08:57:44.957Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d1fbc5d45414b2c5deeb-2b8ae598be9b00892416",
+          "file": "citizen_search.spec.ts",
+          "line": 209,
+          "column": 9
+        },
+        {
+          "title": "Citizen Search - Cards",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 300000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 38733,
+                  "error": {
+                    "message": "Error: Card information not found on the page. Tried multiple selectors.",
+                    "stack": "Error: Card information not found on the page. Tried multiple selectors.\n    at CitizenSearchPage.verifyCardInformation (/Users/adnan/Documents/Aris Automantion - Ady/pages/citizen_search.page.ts:205:19)\n    at /Users/adnan/Documents/Aris Automantion - Ady/tests/citizen_search.spec.ts:232:9",
+                    "location": {
+                      "file": "/Users/adnan/Documents/Aris Automantion - Ady/pages/citizen_search.page.ts",
+                      "column": 19,
+                      "line": 205
+                    },
+                    "snippet": "\u001b[90m   at \u001b[39m../pages/citizen_search.page.ts:205\n\n\u001b[0m \u001b[90m 203 |\u001b[39m         \n \u001b[90m 204 |\u001b[39m         \u001b[36mif\u001b[39m (\u001b[33m!\u001b[39mcardFound) {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 205 |\u001b[39m             \u001b[36mthrow\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mError\u001b[39m(\u001b[32m'Card information not found on the page. Tried multiple selectors.'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                   \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 206 |\u001b[39m         }\n \u001b[90m 207 |\u001b[39m     }\n \u001b[90m 208 |\u001b[39m\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/adnan/Documents/Aris Automantion - Ady/pages/citizen_search.page.ts",
+                        "column": 19,
+                        "line": 205
+                      },
+                      "message": "Error: Card information not found on the page. Tried multiple selectors.\n\n\u001b[90m   at \u001b[39m../pages/citizen_search.page.ts:205\n\n\u001b[0m \u001b[90m 203 |\u001b[39m         \n \u001b[90m 204 |\u001b[39m         \u001b[36mif\u001b[39m (\u001b[33m!\u001b[39mcardFound) {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 205 |\u001b[39m             \u001b[36mthrow\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mError\u001b[39m(\u001b[32m'Card information not found on the page. Tried multiple selectors.'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                   \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 206 |\u001b[39m         }\n \u001b[90m 207 |\u001b[39m     }\n \u001b[90m 208 |\u001b[39m\u001b[0m\n\u001b[2m    at CitizenSearchPage.verifyCardInformation (/Users/adnan/Documents/Aris Automantion - Ady/pages/citizen_search.page.ts:205:19)\u001b[22m\n\u001b[2m    at /Users/adnan/Documents/Aris Automantion - Ady/tests/citizen_search.spec.ts:232:9\u001b[22m"
+                    }
+                  ],
+                  "stdout": [
+                    {
+                      "text": "Resetting to dashboard before test...\n"
+                    },
+                    {
+                      "text": "Successfully returned to dashboard\n"
+                    },
+                    {
+                      "text": "✓ Search result verified: Found \"DURANT\"\n"
+                    },
+                    {
+                      "text": "After test cleanup - returning to dashboard...\n"
+                    },
+                    {
+                      "text": "Clicked home button\n"
+                    },
+                    {
+                      "text": "Successfully returned to dashboard after test\n"
+                    },
+                    {
+                      "text": "Running final cleanup after all tests...\n"
+                    },
+                    {
+                      "text": "Logout successful\n"
+                    },
+                    {
+                      "text": "Context closed\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-06-23T08:57:51.524Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/Users/adnan/Documents/Aris Automantion - Ady/test-results/citizen_search-Citizen-Search---Cards-chromium/test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/adnan/Documents/Aris Automantion - Ady/test-results/citizen_search-Citizen-Search---Cards-chromium/error-context.md"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/adnan/Documents/Aris Automantion - Ady/test-results/citizen_search-Citizen-Search---Cards-chromium/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/Users/adnan/Documents/Aris Automantion - Ady/test-results/citizen_search-Citizen-Search---Cards-chromium/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/adnan/Documents/Aris Automantion - Ady/pages/citizen_search.page.ts",
+                    "column": 19,
+                    "line": 205
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "d1fbc5d45414b2c5deeb-6a9d48a999f850ef7c21",
+          "file": "citizen_search.spec.ts",
+          "line": 223,
+          "column": 9
+        },
+        {
+          "title": "Citizen Search - Other Information",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 300000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 0,
+                  "error": {
+                    "message": "Error: locator.waitFor: Target page, context or browser has been closed\nCall log:\n\u001b[2m  - waiting for getByText('One Time Password') to be visible\u001b[22m\n",
+                    "stack": "Error: locator.waitFor: Target page, context or browser has been closed\nCall log:\n\u001b[2m  - waiting for getByText('One Time Password') to be visible\u001b[22m\n\n    at LoginPage.login (/Users/adnan/Documents/Aris Automantion - Ady/pages/login.page.ts:49:60)\n    at /Users/adnan/Documents/Aris Automantion - Ady/tests/citizen_search.spec.ts:30:13",
+                    "location": {
+                      "file": "/Users/adnan/Documents/Aris Automantion - Ady/pages/login.page.ts",
+                      "column": 60,
+                      "line": 49
+                    },
+                    "snippet": "\u001b[90m   at \u001b[39m../pages/login.page.ts:49\n\n\u001b[0m \u001b[90m 47 |\u001b[39m\n \u001b[90m 48 |\u001b[39m         \u001b[36mtry\u001b[39m {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 49 |\u001b[39m             \u001b[36mawait\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mpage\u001b[33m.\u001b[39mgetByText(\u001b[32m'One Time Password'\u001b[39m)\u001b[33m.\u001b[39mwaitFor({ timeout\u001b[33m:\u001b[39m \u001b[35m30000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                            \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 50 |\u001b[39m         } \u001b[36mcatch\u001b[39m (error) {\n \u001b[90m 51 |\u001b[39m             \u001b[90m// Check if already logged in\u001b[39m\n \u001b[90m 52 |\u001b[39m             \u001b[36mconst\u001b[39m currentUrl \u001b[33m=\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mpage\u001b[33m.\u001b[39murl()\u001b[33m;\u001b[39m\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/adnan/Documents/Aris Automantion - Ady/pages/login.page.ts",
+                        "column": 60,
+                        "line": 49
+                      },
+                      "message": "Error: locator.waitFor: Target page, context or browser has been closed\nCall log:\n\u001b[2m  - waiting for getByText('One Time Password') to be visible\u001b[22m\n\n\n\u001b[90m   at \u001b[39m../pages/login.page.ts:49\n\n\u001b[0m \u001b[90m 47 |\u001b[39m\n \u001b[90m 48 |\u001b[39m         \u001b[36mtry\u001b[39m {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 49 |\u001b[39m             \u001b[36mawait\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mpage\u001b[33m.\u001b[39mgetByText(\u001b[32m'One Time Password'\u001b[39m)\u001b[33m.\u001b[39mwaitFor({ timeout\u001b[33m:\u001b[39m \u001b[35m30000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                            \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 50 |\u001b[39m         } \u001b[36mcatch\u001b[39m (error) {\n \u001b[90m 51 |\u001b[39m             \u001b[90m// Check if already logged in\u001b[39m\n \u001b[90m 52 |\u001b[39m             \u001b[36mconst\u001b[39m currentUrl \u001b[33m=\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mpage\u001b[33m.\u001b[39murl()\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at LoginPage.login (/Users/adnan/Documents/Aris Automantion - Ady/pages/login.page.ts:49:60)\u001b[22m\n\u001b[2m    at /Users/adnan/Documents/Aris Automantion - Ady/tests/citizen_search.spec.ts:30:13\u001b[22m"
+                    }
+                  ],
+                  "stdout": [
+                    {
+                      "text": "Starting browser and logging in...\n"
+                    },
+                    {
+                      "text": "Running final cleanup after all tests...\n"
+                    },
+                    {
+                      "text": "Context closed\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-06-23T08:58:33.363Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/adnan/Documents/Aris Automantion - Ady/test-results/citizen_search-Citizen-Search---Other-Information-chromium/error-context.md"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/adnan/Documents/Aris Automantion - Ady/test-results/citizen_search-Citizen-Search---Other-Information-chromium/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/Users/adnan/Documents/Aris Automantion - Ady/test-results/citizen_search-Citizen-Search---Other-Information-chromium/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/adnan/Documents/Aris Automantion - Ady/pages/login.page.ts",
+                    "column": 60,
+                    "line": 49
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "d1fbc5d45414b2c5deeb-7aa3af7e449b21ee63a0",
+          "file": "citizen_search.spec.ts",
+          "line": 239,
+          "column": 9
+        },
+        {
+          "title": "Citizen Search - Photo & Signature",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 300000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": -1,
+                  "parallelIndex": -1,
+                  "status": "skipped",
+                  "duration": 0,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-06-23T08:58:50.564Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "d1fbc5d45414b2c5deeb-ac2818fd4e0c8a1eeaf4",
+          "file": "citizen_search.spec.ts",
+          "line": 255,
+          "column": 9
+        }
+      ]
+    },
+    {
       "title": "citizen_update.spec.ts",
       "file": "citizen_update.spec.ts",
       "column": 0,
       "line": 0,
-      "specs": [],
-      "suites": [
+      "specs": [
         {
-          "title": "Citizen Search Functionality",
-          "file": "citizen_update.spec.ts",
-          "line": 31,
-          "column": 6,
-          "specs": [
+          "title": "Citizen Update - Edit Valid ID",
+          "ok": false,
+          "tags": [],
+          "tests": [
             {
-              "title": "Citizen Update - Edit Valid ID",
-              "ok": true,
-              "tags": [],
-              "tests": [
+              "timeout": 300000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
                 {
-                  "timeout": 300000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 0,
+                  "error": {
+                    "message": "Error: locator.waitFor: Target page, context or browser has been closed\nCall log:\n\u001b[2m  - waiting for getByText('One Time Password') to be visible\u001b[22m\n",
+                    "stack": "Error: locator.waitFor: Target page, context or browser has been closed\nCall log:\n\u001b[2m  - waiting for getByText('One Time Password') to be visible\u001b[22m\n\n    at LoginPage.login (/Users/adnan/Documents/Aris Automantion - Ady/pages/login.page.ts:49:60)\n    at /Users/adnan/Documents/Aris Automantion - Ady/tests/citizen_update.spec.ts:30:13",
+                    "location": {
+                      "file": "/Users/adnan/Documents/Aris Automantion - Ady/pages/login.page.ts",
+                      "column": 60,
+                      "line": 49
+                    },
+                    "snippet": "\u001b[90m   at \u001b[39m../pages/login.page.ts:49\n\n\u001b[0m \u001b[90m 47 |\u001b[39m\n \u001b[90m 48 |\u001b[39m         \u001b[36mtry\u001b[39m {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 49 |\u001b[39m             \u001b[36mawait\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mpage\u001b[33m.\u001b[39mgetByText(\u001b[32m'One Time Password'\u001b[39m)\u001b[33m.\u001b[39mwaitFor({ timeout\u001b[33m:\u001b[39m \u001b[35m30000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                            \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 50 |\u001b[39m         } \u001b[36mcatch\u001b[39m (error) {\n \u001b[90m 51 |\u001b[39m             \u001b[90m// Check if already logged in\u001b[39m\n \u001b[90m 52 |\u001b[39m             \u001b[36mconst\u001b[39m currentUrl \u001b[33m=\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mpage\u001b[33m.\u001b[39murl()\u001b[33m;\u001b[39m\u001b[0m"
+                  },
+                  "errors": [
                     {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 21552,
-                      "errors": [],
-                      "stdout": [
-                        {
-                          "text": "Starting browser and logging in...\n"
-                        },
-                        {
-                          "text": "OTP FOUND: 56564\n"
-                        },
-                        {
-                          "text": "Login completed successfully\n"
-                        },
-                        {
-                          "text": "Resetting to dashboard before test...\n"
-                        },
-                        {
-                          "text": "Successfully returned to dashboard\n"
-                        },
-                        {
-                          "text": "✓ Search result verified: Found \"DURANT\"\n"
-                        },
-                        {
-                          "text": "After test cleanup - returning to dashboard...\n"
-                        },
-                        {
-                          "text": "✓ Clicked home button\n"
-                        },
-                        {
-                          "text": "Successfully returned to dashboard after test\n"
-                        }
-                      ],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-05-22T12:14:30.870Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "2707c4c13b0ef38d6475-425aab3a2b6c3f432aad",
-              "file": "citizen_update.spec.ts",
-              "line": 146,
-              "column": 9
-            },
-            {
-              "title": "Citizen Update - Edit Relationship",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 300000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 7946,
-                      "errors": [],
-                      "stdout": [
-                        {
-                          "text": "Resetting to dashboard before test...\n"
-                        },
-                        {
-                          "text": "Successfully returned to dashboard\n"
-                        },
-                        {
-                          "text": "✓ Search result verified: Found \"DURANT\"\n"
-                        },
-                        {
-                          "text": "After test cleanup - returning to dashboard...\n"
-                        },
-                        {
-                          "text": "✓ Clicked home button\n"
-                        },
-                        {
-                          "text": "Successfully returned to dashboard after test\n"
-                        }
-                      ],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-05-22T12:15:22.889Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "2707c4c13b0ef38d6475-d93696863946940dd824",
-              "file": "citizen_update.spec.ts",
-              "line": 165,
-              "column": 9
-            },
-            {
-              "title": "Citizen Update - Edit Address Tab",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 300000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 28631,
-                      "errors": [],
-                      "stdout": [
-                        {
-                          "text": "Resetting to dashboard before test...\n"
-                        },
-                        {
-                          "text": "Successfully returned to dashboard\n"
-                        },
-                        {
-                          "text": "✓ Search result verified: Found \"DURANT\"\n"
-                        },
-                        {
-                          "text": "After test cleanup - returning to dashboard...\n"
-                        },
-                        {
-                          "text": "✓ Clicked home button\n"
-                        },
-                        {
-                          "text": "Successfully returned to dashboard after test\n"
-                        }
-                      ],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-05-22T12:15:30.850Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "2707c4c13b0ef38d6475-716b6e059de7d929123d",
-              "file": "citizen_update.spec.ts",
-              "line": 183,
-              "column": 9
-            },
-            {
-              "title": "Citizen Update - Edit Proof of Billing",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 300000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 15757,
-                      "errors": [],
-                      "stdout": [
-                        {
-                          "text": "Resetting to dashboard before test...\n"
-                        },
-                        {
-                          "text": "Successfully returned to dashboard\n"
-                        },
-                        {
-                          "text": "✓ Search result verified: Found \"DURANT\"\n"
-                        },
-                        {
-                          "text": "After test cleanup - returning to dashboard...\n"
-                        },
-                        {
-                          "text": "✓ Clicked home button\n"
-                        },
-                        {
-                          "text": "Successfully returned to dashboard after test\n"
-                        }
-                      ],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-05-22T12:15:59.497Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "2707c4c13b0ef38d6475-584c0ab9d3d2a8d73ba4",
-              "file": "citizen_update.spec.ts",
-              "line": 201,
-              "column": 9
-            },
-            {
-              "title": "Citizen Update - Edit Basic Information",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 300000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 8598,
-                      "errors": [],
-                      "stdout": [
-                        {
-                          "text": "Resetting to dashboard before test...\n"
-                        },
-                        {
-                          "text": "Successfully returned to dashboard\n"
-                        },
-                        {
-                          "text": "✓ Search result verified: Found \"DURANT\"\n"
-                        },
-                        {
-                          "text": "After test cleanup - returning to dashboard...\n"
-                        },
-                        {
-                          "text": "✓ Clicked home button\n"
-                        },
-                        {
-                          "text": "Successfully returned to dashboard after test\n"
-                        }
-                      ],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-05-22T12:16:10.744Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "2707c4c13b0ef38d6475-001f3bfecffe8fd8ffa3",
-              "file": "citizen_update.spec.ts",
-              "line": 235,
-              "column": 9
-            },
-            {
-              "title": "Citizen Update - Edit Other Information",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 300000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 9518,
-                      "errors": [],
-                      "stdout": [
-                        {
-                          "text": "Resetting to dashboard before test...\n"
-                        },
-                        {
-                          "text": "Successfully returned to dashboard\n"
-                        },
-                        {
-                          "text": "✓ Search result verified: Found \"DURANT\"\n"
-                        },
-                        {
-                          "text": "After test cleanup - returning to dashboard...\n"
-                        },
-                        {
-                          "text": "✓ Clicked home button\n"
-                        },
-                        {
-                          "text": "Successfully returned to dashboard after test\n"
-                        }
-                      ],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-05-22T12:16:19.364Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "2707c4c13b0ef38d6475-78ac812e7f368bbdfcb2",
-              "file": "citizen_update.spec.ts",
-              "line": 268,
-              "column": 9
-            },
-            {
-              "title": "Citizen Update - Photo & Signature",
-              "ok": false,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 300000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "failed",
-                      "duration": 25172,
-                      "error": {
-                        "message": "Error: locator.click: Target page, context or browser has been closed\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Save Changes' })\u001b[22m\n\u001b[2m    - locator resolved to <button disabled tabindex=\"-1\" type=\"submit\" class=\"MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary Mui-disabled MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary css-ff8hmg\">Save Changes</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not enabled\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not enabled\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    8 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not enabled\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 500ms\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m  - element was detached from the DOM, retrying\u001b[22m\n",
-                        "stack": "Error: locator.click: Target page, context or browser has been closed\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Save Changes' })\u001b[22m\n\u001b[2m    - locator resolved to <button disabled tabindex=\"-1\" type=\"submit\" class=\"MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary Mui-disabled MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary css-ff8hmg\">Save Changes</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not enabled\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not enabled\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    8 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not enabled\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 500ms\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m  - element was detached from the DOM, retrying\u001b[22m\n\n    at CitizenSearchPage.saveChanges (/Users/adnan/Documents/Aris Automantion - Ady/pages/citizen_search.page.ts:224:38)\n    at /Users/adnan/Documents/Aris Automantion - Ady/tests/citizen_update.spec.ts:298:33",
-                        "location": {
-                          "file": "/Users/adnan/Documents/Aris Automantion - Ady/pages/citizen_search.page.ts",
-                          "column": 38,
-                          "line": 224
-                        },
-                        "snippet": "\u001b[90m   at \u001b[39m../pages/citizen_search.page.ts:224\n\n\u001b[0m \u001b[90m 222 |\u001b[39m\n \u001b[90m 223 |\u001b[39m     \u001b[36masync\u001b[39m saveChanges() {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 224 |\u001b[39m         \u001b[36mawait\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39msaveChangesButton\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                      \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 225 |\u001b[39m         \u001b[36mawait\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39msaveButton\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\n \u001b[90m 226 |\u001b[39m         \u001b[36mawait\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mcloseButton\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\n \u001b[90m 227 |\u001b[39m     }\u001b[0m"
+                      "location": {
+                        "file": "/Users/adnan/Documents/Aris Automantion - Ady/pages/login.page.ts",
+                        "column": 60,
+                        "line": 49
                       },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "/Users/adnan/Documents/Aris Automantion - Ady/pages/citizen_search.page.ts",
-                            "column": 38,
-                            "line": 224
-                          },
-                          "message": "Error: locator.click: Target page, context or browser has been closed\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Save Changes' })\u001b[22m\n\u001b[2m    - locator resolved to <button disabled tabindex=\"-1\" type=\"submit\" class=\"MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary Mui-disabled MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary css-ff8hmg\">Save Changes</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not enabled\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not enabled\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    8 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not enabled\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 500ms\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m  - element was detached from the DOM, retrying\u001b[22m\n\n\n\u001b[90m   at \u001b[39m../pages/citizen_search.page.ts:224\n\n\u001b[0m \u001b[90m 222 |\u001b[39m\n \u001b[90m 223 |\u001b[39m     \u001b[36masync\u001b[39m saveChanges() {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 224 |\u001b[39m         \u001b[36mawait\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39msaveChangesButton\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                      \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 225 |\u001b[39m         \u001b[36mawait\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39msaveButton\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\n \u001b[90m 226 |\u001b[39m         \u001b[36mawait\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mcloseButton\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\n \u001b[90m 227 |\u001b[39m     }\u001b[0m\n\u001b[2m    at CitizenSearchPage.saveChanges (/Users/adnan/Documents/Aris Automantion - Ady/pages/citizen_search.page.ts:224:38)\u001b[22m\n\u001b[2m    at /Users/adnan/Documents/Aris Automantion - Ady/tests/citizen_update.spec.ts:298:33\u001b[22m"
-                        }
-                      ],
-                      "stdout": [
-                        {
-                          "text": "Resetting to dashboard before test...\n"
-                        },
-                        {
-                          "text": "Successfully returned to dashboard\n"
-                        },
-                        {
-                          "text": "✓ Search result verified: Found \"DURANT\"\n"
-                        },
-                        {
-                          "text": "After test cleanup - returning to dashboard...\n"
-                        },
-                        {
-                          "text": "Page is closed, skipping cleanup\n"
-                        },
-                        {
-                          "text": "Running final cleanup after all tests...\n"
-                        },
-                        {
-                          "text": "Context closed\n"
-                        }
-                      ],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-05-22T12:16:28.900Z",
-                      "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "/Users/adnan/Documents/Aris Automantion - Ady/test-results/citizen_update-Citizen-Sea-d7af5-en-Update---Photo-Signature-chromium/error-context.md"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "/Users/adnan/Documents/Aris Automantion - Ady/test-results/citizen_update-Citizen-Sea-d7af5-en-Update---Photo-Signature-chromium/error-context.md"
-                        },
-                        {
-                          "name": "trace",
-                          "contentType": "application/zip",
-                          "path": "/Users/adnan/Documents/Aris Automantion - Ady/test-results/citizen_update-Citizen-Sea-d7af5-en-Update---Photo-Signature-chromium/trace.zip"
-                        }
-                      ],
-                      "errorLocation": {
-                        "file": "/Users/adnan/Documents/Aris Automantion - Ady/pages/citizen_search.page.ts",
-                        "column": 38,
-                        "line": 224
-                      }
+                      "message": "Error: locator.waitFor: Target page, context or browser has been closed\nCall log:\n\u001b[2m  - waiting for getByText('One Time Password') to be visible\u001b[22m\n\n\n\u001b[90m   at \u001b[39m../pages/login.page.ts:49\n\n\u001b[0m \u001b[90m 47 |\u001b[39m\n \u001b[90m 48 |\u001b[39m         \u001b[36mtry\u001b[39m {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 49 |\u001b[39m             \u001b[36mawait\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mpage\u001b[33m.\u001b[39mgetByText(\u001b[32m'One Time Password'\u001b[39m)\u001b[33m.\u001b[39mwaitFor({ timeout\u001b[33m:\u001b[39m \u001b[35m30000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                            \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 50 |\u001b[39m         } \u001b[36mcatch\u001b[39m (error) {\n \u001b[90m 51 |\u001b[39m             \u001b[90m// Check if already logged in\u001b[39m\n \u001b[90m 52 |\u001b[39m             \u001b[36mconst\u001b[39m currentUrl \u001b[33m=\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mpage\u001b[33m.\u001b[39murl()\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at LoginPage.login (/Users/adnan/Documents/Aris Automantion - Ady/pages/login.page.ts:49:60)\u001b[22m\n\u001b[2m    at /Users/adnan/Documents/Aris Automantion - Ady/tests/citizen_update.spec.ts:30:13\u001b[22m"
                     }
                   ],
-                  "status": "unexpected"
+                  "stdout": [
+                    {
+                      "text": "Starting browser and logging in...\n"
+                    },
+                    {
+                      "text": "Running final cleanup after all tests...\n"
+                    },
+                    {
+                      "text": "Context closed\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-06-23T08:58:50.835Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/adnan/Documents/Aris Automantion - Ady/test-results/citizen_update-Citizen-Update---Edit-Valid-ID-chromium/error-context.md"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/adnan/Documents/Aris Automantion - Ady/test-results/citizen_update-Citizen-Update---Edit-Valid-ID-chromium/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/Users/adnan/Documents/Aris Automantion - Ady/test-results/citizen_update-Citizen-Update---Edit-Valid-ID-chromium/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/adnan/Documents/Aris Automantion - Ady/pages/login.page.ts",
+                    "column": 60,
+                    "line": 49
+                  }
                 }
               ],
-              "id": "2707c4c13b0ef38d6475-e4b8d80f947b842ce9d2",
-              "file": "citizen_update.spec.ts",
-              "line": 286,
-              "column": 9
+              "status": "unexpected"
             }
-          ]
+          ],
+          "id": "2707c4c13b0ef38d6475-e45bbc298cdb1e8d4d14",
+          "file": "citizen_update.spec.ts",
+          "line": 129,
+          "column": 9
+        },
+        {
+          "title": "Citizen Update - Edit Relationship",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 300000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": -1,
+                  "parallelIndex": -1,
+                  "status": "skipped",
+                  "duration": 0,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-06-23T08:59:01.934Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "2707c4c13b0ef38d6475-71c1f7fba30a37ac2258",
+          "file": "citizen_update.spec.ts",
+          "line": 148,
+          "column": 9
+        },
+        {
+          "title": "Citizen Update - Edit Address Tab",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 300000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": -1,
+                  "parallelIndex": -1,
+                  "status": "skipped",
+                  "duration": 0,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-06-23T08:59:01.935Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "2707c4c13b0ef38d6475-3a4364715279c9dab4ae",
+          "file": "citizen_update.spec.ts",
+          "line": 166,
+          "column": 9
+        },
+        {
+          "title": "Citizen Update - Edit Proof of Billing",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 300000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": -1,
+                  "parallelIndex": -1,
+                  "status": "skipped",
+                  "duration": 0,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-06-23T08:59:01.935Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "2707c4c13b0ef38d6475-5081fccd7a885c93d099",
+          "file": "citizen_update.spec.ts",
+          "line": 184,
+          "column": 9
+        },
+        {
+          "title": "Citizen Update - Edit Basic Information",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 300000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": -1,
+                  "parallelIndex": -1,
+                  "status": "skipped",
+                  "duration": 0,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-06-23T08:59:01.935Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "2707c4c13b0ef38d6475-104f30a2725d4113252d",
+          "file": "citizen_update.spec.ts",
+          "line": 219,
+          "column": 9
+        },
+        {
+          "title": "Citizen Update - Edit Other Information",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 300000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": -1,
+                  "parallelIndex": -1,
+                  "status": "skipped",
+                  "duration": 0,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-06-23T08:59:01.936Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "2707c4c13b0ef38d6475-b535fd951af3279315c4",
+          "file": "citizen_update.spec.ts",
+          "line": 252,
+          "column": 9
+        },
+        {
+          "title": "Citizen Update - Photo & Signature",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 300000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": -1,
+                  "parallelIndex": -1,
+                  "status": "skipped",
+                  "duration": 0,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-06-23T08:59:01.936Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "2707c4c13b0ef38d6475-3f7fddb8062a93b86e41",
+          "file": "citizen_update.spec.ts",
+          "line": 270,
+          "column": 9
         }
       ]
     }
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-05-22T12:14:30.574Z",
-    "duration": 141903.356,
+    "startTime": "2026-06-23T08:56:35.759Z",
+    "duration": 146255.544,
     "expected": 6,
-    "skipped": 0,
-    "unexpected": 1,
+    "skipped": 7,
+    "unexpected": 3,
     "flaky": 0
   }
 }

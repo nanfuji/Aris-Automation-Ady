@@ -107,7 +107,7 @@ export class CitizenSearchPage {
 
     async openValidIDTab() {
         await this.validIDTab.click();
-    }
+}
 
     async openPhotoSigTab() {
         await this.photoSigTab.click();
@@ -274,8 +274,8 @@ export class CitizenSearchPage {
         await this.page.getByRole('button', { name: 'Edit' }).nth(1).click();
         await this.page.getByRole('button', { name: 'Yes, enable edit' }).click();
         await this.page.getByRole('button', { name: 'Edit' }).click();
-        await this.page.getByRole('button').first().click();
-        await this.page.getByRole('button', { name: 'Crop' }).click();
+        // await this.page.getByRole('button').first().click();
+        // await this.page.getByRole('button', { name: 'Crop' }).click();
     }
 
     async editBasicInformation(

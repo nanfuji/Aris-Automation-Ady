@@ -1,0 +1,145 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: citizen_search.spec.ts >> Citizen Search Functionality >> Citizen Search - Valid ID
+- Location: tests/citizen_search.spec.ts:132:9
+
+# Error details
+
+```
+Error: locator.waitFor: Target page, context or browser has been closed
+Call log:
+  - waiting for getByText('One Time Password') to be visible
+
+```
+
+# Test source
+
+```ts
+  1   | import {
+  2   |     Page,
+  3   |     Locator,
+  4   |     BrowserContext,
+  5   |     expect
+  6   | } from '@playwright/test';
+  7   | 
+  8   | export class LoginPage {
+  9   | 
+  10  |     readonly page: Page;
+  11  |     readonly context: BrowserContext;
+  12  |     readonly emailInput: Locator;
+  13  |     readonly passwordInput: Locator;
+  14  |     readonly loginButton: Locator;
+  15  |     readonly confirmCodeButton: Locator;
+  16  | 
+  17  |     constructor(
+  18  |         page: Page,
+  19  |         context: BrowserContext
+  20  |     ) {
+  21  |         this.page = page;
+  22  |         this.context = context;
+  23  |         this.emailInput = page.getByRole('textbox', { name: 'Enter your email address' });
+  24  |         this.passwordInput = page.getByRole('textbox', { name: '••••••••••' });
+  25  |         this.loginButton = page.getByRole('button', { name: 'Log in' });
+  26  |         this.confirmCodeButton = page.getByRole('button', { name: /confirm code/i });
+  27  |     }
+  28  | 
+  29  |     async navigate() {
+  30  |         await this.page.goto('https://sit-bayambang.aris.ph/sign-in',
+  31  |             { waitUntil: 'networkidle' });
+  32  |     }
+  33  | 
+  34  |     async login(email: string, password: string) {
+  35  | 
+  36  |         // ======================================================
+  37  |         // ENTER LOGIN CREDENTIALS
+  38  |         // ======================================================
+  39  | 
+  40  |         await this.emailInput.fill(email);
+  41  |         await this.passwordInput.fill(password);
+  42  |         await this.loginButton.click();
+  43  | 
+  44  |         // ======================================================
+  45  |         // WAIT FOR OTP MODAL
+  46  |         // ======================================================
+  47  | 
+  48  |         try {
+> 49  |             await this.page.getByText('One Time Password').waitFor({ timeout: 30000 });
+      |                                                            ^ Error: locator.waitFor: Target page, context or browser has been closed
+  50  |         } catch (error) {
+  51  |             // Check if already logged in
+  52  |             const currentUrl = this.page.url();
+  53  |             if (!currentUrl.includes('sign-in')) {
+  54  |                 console.log('Already logged in, skipping OTP');
+  55  |                 return;
+  56  |             }
+  57  |             throw error;
+  58  |         }
+  59  | 
+  60  |         // ======================================================
+  61  |         // OPEN MAILINATOR
+  62  |         // ======================================================
+  63  | 
+  64  |         const mailPage = await this.context.newPage();
+  65  | 
+  66  |         try {
+  67  |             await mailPage.goto('https://www.mailinator.com/v4/public/inboxes.jsp?to=adnan',
+  68  |                 { waitUntil: 'domcontentloaded' }
+  69  |             );
+  70  | 
+  71  |             await mailPage.getByRole('cell').first().waitFor({ timeout: 30000 });
+  72  | 
+  73  |             // Retry search for OTP email
+  74  |             const latestMail = mailPage.getByRole('cell', { name: /is your ARIS/i }).first();
+  75  | 
+  76  |             await expect(latestMail).toBeVisible({ timeout: 60000 });
+  77  | 
+  78  |             // Extract OTP
+  79  |             const subjectText = await latestMail.textContent() || '';
+  80  |             const otp = subjectText.match(/\d{5}/)?.[0] || '';
+  81  | 
+  82  |             console.log('OTP FOUND:', otp);
+  83  | 
+  84  |             expect(otp).not.toBe('');
+  85  | 
+  86  |             // Open email
+  87  |             await latestMail.click();
+  88  | 
+  89  |             // Wait for email content to load
+  90  |             await mailPage.waitForTimeout(6000);
+  91  | 
+  92  |             // ======================================================
+  93  |             // RETURN TO MAIN PAGE
+  94  |             // ======================================================
+  95  | 
+  96  |             await this.page.bringToFront();
+  97  | 
+  98  |             const otpBoxes = this.page.getByRole('textbox');
+  99  |             await expect(otpBoxes.first()).toBeVisible({ timeout: 10000 });
+  100 | 
+  101 |             // Fill OTP
+  102 |             for (
+  103 |                 let i = 0;
+  104 |                 i < otp.length;
+  105 |                 i++
+  106 |             ) {
+  107 |                 await otpBoxes.nth(i).fill(otp[i]);
+  108 |             }
+  109 |             await this.confirmCodeButton.click();
+  110 |             await this.page.waitForLoadState('networkidle');
+  111 | 
+  112 |         } catch (error) {
+  113 |             console.error('Login failed:', error);
+  114 |             throw error;
+  115 |         } finally {
+  116 | 
+  117 |             await mailPage.close();
+  118 |         }
+  119 |     }
+  120 | }
+```

@@ -1,0 +1,156 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: citizen_search.spec.ts >> Citizen Search - Relationship
+- Location: tests/citizen_search.spec.ts:147:9
+
+# Error details
+
+```
+TypeError: Cannot read properties of undefined (reading 'getByRole')
+```
+
+# Test source
+
+```ts
+  1   | import {
+  2   |     Page,
+  3   |     Locator,
+  4   |     expect
+  5   | } from '@playwright/test';
+  6   | 
+  7   | export class CitizenSearchPage {
+  8   | 
+  9   |     readonly page: Page;
+  10  | 
+  11  |     readonly citizensButton: Locator;
+  12  |     readonly filterButton: Locator;
+  13  |     readonly applyFilterButton: Locator;
+  14  |     readonly lastNameFilterInput: Locator;
+  15  | 
+  16  |     readonly validIDTab: Locator;
+  17  |     readonly photoSigTab: Locator;
+  18  |     readonly relationshipTab: Locator;
+  19  |     readonly addressTab: Locator;
+  20  |     readonly proofOfBillingTab: Locator;
+  21  |     readonly contactTab: Locator;
+  22  |     readonly cardsTab: Locator;
+  23  |     readonly otherInfoTab: Locator;
+  24  | 
+  25  |     readonly homeButton: Locator;
+  26  |     readonly closeButton: Locator;
+  27  | 
+  28  |     readonly saveChangesButton: Locator;
+  29  |     readonly saveButton: Locator;
+  30  | 
+  31  |     constructor(page: Page) {
+  32  | 
+  33  |         this.page = page;
+> 34  |         this.citizensButton = page.getByRole('button', { name: 'Citizens' });
+      |                                    ^ TypeError: Cannot read properties of undefined (reading 'getByRole')
+  35  |         this.filterButton = page.getByRole('button', { name: 'Filter' });
+  36  |         this.applyFilterButton = page.getByRole('button', { name: 'Apply Filter' });
+  37  |         this.lastNameFilterInput = page.getByRole('textbox', { name: 'e.g. DELA CRUZ' });
+  38  |         this.validIDTab = page.getByRole('tab', { name: 'Valid ID' });
+  39  |         this.photoSigTab = page.getByRole('tab', { name: 'Photo & Sig' });
+  40  |         this.relationshipTab = page.getByRole('tab', { name: 'Relationship' });
+  41  |         this.addressTab = page.getByRole('tab', { name: 'Address' });
+  42  |         this.proofOfBillingTab = page.getByRole('tab', { name: 'Proof of Billing' });
+  43  |         this.contactTab = page.getByRole('tab', { name: 'Contact' });
+  44  |         this.cardsTab = page.getByRole('tab', { name: 'Card' });
+  45  |         this.otherInfoTab = page.getByRole('tab', { name: 'Other Info' });
+  46  |         this.homeButton = page.locator('div').nth(4);
+  47  |         this.closeButton = page.getByRole('button', { name: 'Close' });
+  48  |         this.saveChangesButton = page.getByRole('button', { name: 'Save Changes' });
+  49  |         this.saveButton = page.getByRole('button', { name: 'Save' });
+  50  |     }
+  51  | 
+  52  |     async navigateToCitizens() {
+  53  |         await this.citizensButton.waitFor();
+  54  |         await this.citizensButton.click();
+  55  |     }
+  56  | 
+  57  |     async clickHome() {
+  58  |         await this.homeButton.waitFor();
+  59  |         await this.homeButton.click();
+  60  |     }
+  61  | 
+  62  |     async closeWindow() {
+  63  |         await this.closeButton.waitFor();
+  64  |         await this.closeButton.click();
+  65  |     }
+  66  | 
+  67  |     async applyFilterByLastName(lastName: string) {
+  68  |         await this.filterButton.click();
+  69  |         await this.lastNameFilterInput.click();
+  70  |         await this.lastNameFilterInput.fill(lastName);
+  71  |         await this.applyFilterButton.click();
+  72  |         await this.page.waitForTimeout(2000);
+  73  |     }
+  74  | 
+  75  |     async verifySearchResult(expectedLastName: string) {
+  76  |         await this.page.waitForTimeout(2000);
+  77  | 
+  78  |         const targetCell = this.page.getByRole('cell', { name: expectedLastName, exact: true }).first();
+  79  | 
+  80  |         await targetCell.waitFor({ state: 'visible', timeout: 10000 });
+  81  |         await expect(targetCell).toBeVisible();
+  82  | 
+  83  |         const actualText = await targetCell.textContent();
+  84  |         expect(actualText?.trim().toUpperCase()).toBe(expectedLastName.toUpperCase());
+  85  | 
+  86  |         console.log(`✓ Search result verified: Found "${expectedLastName}"`);
+  87  |     }
+  88  | 
+  89  |     // async applyFilterByGender(gender: string) {
+  90  |     //     await this.filterButton.click();
+  91  |     //     await this.page.getByRole('button', { name: 'Open' }).first().click();
+  92  |     //     await this.page.getByRole('option', { name: gender, exact: true }).click();
+  93  |     //     await this.applyFilterButton.click();
+  94  |     // }
+  95  | 
+  96  |     async openCitizenRecord(citizenName: string) {
+  97  |         await this.page.getByRole('cell', { name: citizenName, exact: true }).first().click();
+  98  |     }
+  99  | 
+  100 |     async openCitizenRecordByIndex(rowIndex: number) {
+  101 |         await this.page.locator(`tr:nth-child(${rowIndex}) > td:nth-child(2)`).click();
+  102 |     }
+  103 | 
+  104 |     async openCitizenRecordByCellIndex(cellIndex: number) {
+  105 |         await this.page.getByRole('cell').nth(cellIndex).click();
+  106 |     }
+  107 | 
+  108 |     async openValidIDTab() {
+  109 |         await this.validIDTab.click();
+  110 | }
+  111 | 
+  112 |     async openPhotoSigTab() {
+  113 |         await this.photoSigTab.click();
+  114 |     }
+  115 | 
+  116 |     async openRelationshipTab() {
+  117 |         await this.relationshipTab.click();
+  118 |     }
+  119 | 
+  120 |     async openAddressTab() {
+  121 |         await this.addressTab.click();
+  122 |     }
+  123 | 
+  124 |     async openProofOfBillingTab() {
+  125 |         await this.proofOfBillingTab.click();
+  126 |     }
+  127 | 
+  128 |     async openContactTab() {
+  129 |         await this.contactTab.click();
+  130 |     }
+  131 | 
+  132 |     async openCardsTab() {
+  133 |         await this.cardsTab.click();
+  134 |     }
+```
